@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>DAC — M.INC.</title>
+    <meta name="description" content="Tutti i DAC: DAC1..DAC5, DACMini e dettagli tecnici" />
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="brand"><h1>M.INC.</h1><p class="tag">DAC — Famiglia Classica</p></div>
+      <nav class="nav" aria-label="Navigazione principale">
+        <a href="index.html">Home</a>
+        <a href="dac.html">DAC</a>
+        <a href="datanet.html">DATANET</a>
+        <a href="progetti.html">Progetti</a>
+        <a href="chi-siamo.html">Chi siamo?</a>
+      </nav>
+      <button id="menuToggle" class="menu-toggle" aria-label="Apri menu">☰</button>
+    </header>
+
+    <main>
+      <section class="section">
+        <div class="section-inner">
+          <h2>La famiglia DAC</h2>
+          <p class="lead">I DAC sono la serie Classica di M.INC., pensati per l'edge e per applicazioni real-time. Di seguito trovate dettagli e link per ogni modello.</p>
+
+          <div class="cards-grid">
+            <article class="card-large glow">
+              <div class="card-body">
+                <h3>DACMini (Little DAC Collection)</h3>
+                <p><strong>~109M parametri</strong> — Il gioiello della Little DAC Collection, Instruction-Tuned per italiano. Versione raccomandata: <a class="link" href="https://huggingface.co/Mattimax/DACMini-IT" target="_blank">DACMini-IT</a>.</p>
+                <p><a class="rainbow-pill" href="https://huggingface.co/collections/Mattimax/little-dac-collection" target="_blank"><span class="inner">Collezione Little DAC</span></a></p>
+              </div>
+            </article>
+
+            <article class="card-large glow">
+              <div class="card-body">
+                <h3>DAC1</h3>
+                <p><strong>~0.5B</strong> — Uno dei prototipi storici: architettura solida ma oggi storicizzata.</p>
+                <p>Uso: ricerca, retrocompatibilità di progetti legacy.</p>
+              </div>
+            </article>
+
+            <article class="card-large glow">
+              <div class="card-body">
+                <h3>DAC2</h3>
+                <p><strong>~0.5-0.6B</strong> — Variante parallela, oggi superata nelle performance da DAC3 e DAC4.</p>
+              </div>
+            </article>
+
+            <article class="card-large glow">
+              <div class="card-body">
+                <h3>DAC3</h3>
+                <p><strong>0.5B</strong> — Il capolavoro della serie Classica. Affidabile e raffinato. <a class="link" href="https://huggingface.co/Mattimax/DATA-AI_Chat_3_0.5B" target="_blank">Hugging Face — DAC3</a></p>
+              </div>
+            </article>
+
+            <article class="card-large glow">
+              <div class="card-body">
+                <h3>DAC4 (4.3)</h3>
+                <p><strong>~1B</strong> — Un mix di potenza e compromessi. Ultima release: <a class="link" href="https://huggingface.co/Mattimax/DAC4.3" target="_blank">DAC4.3</a></p>
+              </div>
+            </article>
+
+            <article class="card-large glow muted">
+              <div class="card-body">
+                <h3>DAC5 — in sviluppo</h3>
+                <p>Progetto in corso: obiettivo maggiore efficienza, capacità e robustezza per large-scale deployment.</p>
+              </div>
+            </article>
+          </div>
+
+          <h3>Note tecniche</h3>
+          <ul>
+            <li>Ottimizziamo la quantizzazione per deployment edge.</li>
+            <li>Focus su italian language modeling e instruction tuning per dialogo.</li>
+            <li>Dataset e pipeline disponibili: <a class="link" href="https://huggingface.co/collections/Mattimax/data-ai-datasets" target="_blank">Data-AI datasets</a>.</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; <span id="year"></span> M.INC.</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+  </body>
+</html>

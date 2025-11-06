@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M.INC. - Home</title>
+    <meta name="description" content="M.INC. — Tecnologie LLM edge-first, DAC family, DACMini e soluzioni DATA-AI" />
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header">
+        <div class="brand">
+            <h1>M.INC.</h1>
+            <p class="tag">Marzorati Incorporation — LLM e edge computing (Italia)</p>
+        </div>
+        <nav class="nav">
+            <a href="index.html" class="active">Home</a>
+            <a href="pages/dac.html">DAC</a>
+            <a href="pages/datanet.html">DATANET</a>
+            <a href="pages/progetti.html">Progetti</a>
+            <a href="pages/chi-siamo.html">Chi siamo?</a>
+        </nav>
+        <button id="menuToggle" class="menu-toggle" aria-label="Apri menu">☰</button>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <h2>Innovazione Italiana nell'Intelligenza Artificiale</h2>
+                    <p>Sviluppiamo modelli linguistici all'avanguardia ottimizzati per l'italiano e l'edge computing</p>
+                    <div class="cta-group">
+                        <a href="pages/dac.html" class="cta">Scopri i DAC</a>
+                        <a href="pages/progetti.html" class="cta ghost">I nostri Progetti</a>
+                    </div>
+                </div>
+                <div class="hero-cards">
+                    <a href="pages/dac.html" class="card glow">
+                        <img src="https://huggingface.co/Mattimax/DAC4.3/resolve/main/DAC_Logo.png" alt="DAC Logo">
+                        <h3>Serie DAC</h3>
+                        <p>La nostra serie di modelli linguistici ottimizzati per l'italiano</p>
+                    </a>
+                    <a href="pages/datanet.html" class="card glow">
+                        <img src="https://huggingface.co/Mattimax/DACMini/resolve/main/DACMini_Logo/DACMini_Logo.png" alt="DACMini Logo">
+                        <h3>DATANET</h3>
+                        <p>L'evoluzione della comunicazione online</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-inner">
+                <h2 class="section-title">Le Nostre Tecnologie</h2>
+                <div class="cards-grid">
+                    <div class="card-large glow">
+                        <div class="card-body">
+                            <h3>Serie DAC</h3>
+                            <p>Una famiglia di modelli linguistici progettati per l'edge computing, da 0.5B a 1B di parametri.</p>
+                            <div class="links-row">
+                                <a href="https://huggingface.co/Mattimax/DAC4.3" target="_blank" rel="noopener" class="link">Esplora DAC4.3 →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-large glow">
+                        <div class="card-body">
+                            <h3>DACMini</h3>
+                            <p>Il più piccolo LLM al mondo capace di parlare italiano, con soli 109M parametri.</p>
+                            <div class="links-row">
+                                <a href="https://huggingface.co/Mattimax/DACMini-IT" target="_blank" rel="noopener" class="link">Scopri DACMini-IT →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-large glow">
+                        <div class="card-body">
+                            <h3>DATANET</h3>
+                            <p>La nostra visione dell'Internet 2.0: chat globale, giochi e contenuti multimediali.</p>
+                            <div class="links-row">
+                                <a href="https://huggingface.co/collections/Mattimax/data-ai-datasets" target="_blank" rel="noopener" class="link">Esplora DATANET →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section alt">
+            <div class="section-inner">
+                <h2 class="section-title">Progetti Open Source</h2>
+                <div class="cards-grid">
+                    <div class="card-large glow">
+                        <div class="card-body">
+                            <h3>ELNS Tokenizer</h3>
+                            <p>Le fondamenta per l'AGI: Elaborazione del Linguaggio Naturale Semplice</p>
+                            <div class="links-row">
+                                <a href="https://github.com/M-INC-01" target="_blank" rel="noopener" class="link">Scopri di più →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-large glow">
+                        <div class="card-body">
+                            <h3>Little DAC Collection</h3>
+                            <p>La nostra collezione di modelli ultra-efficienti per edge computing</p>
+                            <div class="links-row">
+                                <a href="https://huggingface.co/collections/Mattimax/little-dac-collection" target="_blank" rel="noopener" class="link">Esplora la collezione →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; <span id="year"></span> M.INC. — Marzorati Incorporation</p>
+        <div class="social-links">
+            <a href="https://huggingface.co/Mattimax" target="_blank" rel="noopener" class="link">Hugging Face</a>
+            <a href="https://github.com/M-INC-01" target="_blank" rel="noopener" class="link">GitHub</a>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
