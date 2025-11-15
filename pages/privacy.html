@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy & Termini – M.INC.</title>
+  <meta name="description" content="Privacy, cookie policy e termini di servizio di M.INC. per l’utilizzo del sito e i servizi offerti." />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <h1>M.INC.</h1>
+      <p class="tag">Marzorati Incorporation — LLM & Edge Computing</p>
+    </div>
+    <nav class="nav">
+      <a href="../index.html">Home</a>
+      <a href="dac.html">DAC</a>
+      <a href="datanet.html">DATANET</a>
+      <a href="progetti.html">Progetti</a>
+      <a href="chi-siamo.html">Chi siamo</a>
+      <a href="privacy.html" class="active">Privacy / Termini</a>
+    </nav>
+    <button id="menuToggle" class="menu-toggle" aria-label="Apri menu">☰</button>
+  </header>
+
+  <main class="section">
+    <div class="section-inner">
+      <h1>Privacy, Cookie Policy e Termini di Servizio</h1>
+
+      <section class="section">
+        <h2 class="section-title">Informativa sulla Privacy</h2>
+        <p>In M.INC., la tua privacy è una priorità. Raccogliamo solo i dati strettamente necessari per il funzionamento del sito e per migliorare i nostri servizi. Non vendiamo dati a terzi e utilizziamo misure di sicurezza per proteggerli.</p>
+        <p>I dati che possono essere raccolti includono:</p>
+        <ul>
+          <li>Dati tecnici (IP, tipo di browser, dati di navigazione)</li>
+          <li>Informazioni di contatto, se fornite volontariamente</li>
+        </ul>
+        <p>Usiamo questi dati per:</p>
+        <ul>
+          <li>Gestire il sito e migliorare l’esperienza utente</li>
+          <li>Analisi statistiche</li>
+          <li>Comunicazioni rilevanti (es. aggiornamenti su modelli, progetti)</li>
+        </ul>
+      </section>
+
+      <section class="section alt">
+        <h2 class="section-title">Cookie Policy</h2>
+        <p>Il nostro sito utilizza cookie per migliorare la navigazione, analizzare l’uso del sito e personalizzare i contenuti.</p>
+        <p>Tipologie di cookie utilizzati:</p>
+        <ul>
+          <li><strong>Cookie essenziali:</strong> necessari per il funzionamento del sito.</li>
+          <li><strong>Cookie analitici:</strong> per raccogliere dati aggregati su traffico e utilizzo.</li>
+          <li><strong>Cookie di terze parti:</strong> possono essere usati da Google AdSense per la pubblicità personalizzata.</li>
+        </ul>
+        <p>Puoi controllare o disabilitare i cookie tramite le impostazioni del browser. Nota che disabilitando alcuni cookie, alcune funzionalità del sito potrebbero non funzionare correttamente.</p>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Termini di Servizio</h2>
+        <p>Benvenuto su M.INC. (“noi”, “ci”, “nostro”). Usando il sito web <em>m-inc.io</em> (o il dominio che stai usando), accetti i seguenti termini:</p>
+        <ul>
+          <li>Il contenuto del sito è di proprietà di M.INC. o dei suoi contributori.</li>
+          <li>Puoi usare i nostri progetti open source (modelli, dataset, documentazione) secondo le relative licenze.</li>
+          <li>Non ci assumiamo responsabilità per errori nei modelli, nei dati o nei risultati di inferenza.</li>
+          <li>Ci riserviamo il diritto di modificare i contenuti del sito, i termini o la policy in qualsiasi momento. Ti consigliamo di rivedere periodicamente questa pagina.</li>
+        </ul>
+        <p>Se hai domande sui termini, sulla privacy o sui cookie, contattaci tramite il nostro GitHub o via email.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year"></span> M.INC. — Marzorati Incorporation</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

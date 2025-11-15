@@ -1,180 +1,188 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DAC - M.INC.</title>
-    <meta name="google-adsense-account" content="ca-pub-4680780116594133">
-    <link rel="stylesheet" href="../styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4680780116594133"
-     crossorigin="anonymous"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Serie DAC – M.INC.</title>
+  <meta name="description" content="Scopri la serie DAC di M.INC.: modelli LLM italiani ottimizzati per edge computing, da DAC4.3 a DACMini e oltre." />
+  <link rel="stylesheet" href="../styles.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4680780116594133" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header class="site-header">
-        <div class="brand">
-            <h1>M.INC.</h1>
-            <p class="tag">Marzorati Incorporation — LLM e edge computing (Italia)</p>
+  <header class="site-header">
+    <div class="brand">
+      <h1>M.INC.</h1>
+      <p class="tag">Marzorati Incorporation — LLM & Edge Computing</p>
+    </div>
+    <nav class="nav">
+      <a href="../index.html">Home</a>
+      <a href="dac.html" class="active">DAC</a>
+      <a href="datanet.html">DATANET</a>
+      <a href="progetti.html">Progetti</a>
+      <a href="chi-siamo.html">Chi siamo</a>
+      <a href="privacy.html">Privacy / Termini</a>
+    </nav>
+    <button id="menuToggle" class="menu-toggle" aria-label="Apri menu">☰</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="section-inner">
+        <img src="https://huggingface.co/Mattimax/DAC4.3/resolve/main/DAC_Logo.png" alt="DAC Logo" class="logo">
+        <h1 class="section-title">Serie DAC</h1>
+        <p class="lead">Modelli linguistici potenti, efficienti e ottimizzati per l’edge computing.</p>
+      </div>
+    </section>
+
+    <section class="section" id="serie-classica">
+      <div class="section-inner">
+        <h2 class="section-title">Serie Classica DAC</h2>
+        <div class="cards-grid">
+          <article class="card-large glow">
+            <div class="card-body">
+              <h3>DAC4.3</h3>
+              <p><strong>Dimensione:</strong> ~1 B parametri</p>
+              <p>DAC4.3 è il fiore all’occhiello della nostra serie classica. È progettato per fornire un equilibrio ottimale tra capacità di generalizzazione, efficienza e latenza operativa su dispositivi con risorse limitate.</p>
+              <p>Grazie alla sua architettura altamente ottimizzata, DAC4.3 supporta applicazioni complesse come il dialogo, la generazione di testo e l’istruzione su dispositivi edge.</p>
+              <div class="links-row">
+                <a href="https://huggingface.co/Mattimax/DAC4.3" target="_blank" rel="noopener" class="link">Esplora DAC4.3 →</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card-large glow">
+            <div class="card-body">
+              <h3>DAC3</h3>
+              <p><strong>Dimensione:</strong> ~500M parametri</p>
+              <p>DAC3 è stato progettato per essere leggero ma sorprendentemente capace. È ideale per applicazioni dove la potenza di calcolo o la memoria sono limitate, senza compromettere qualità di linguaggio o comprensione.</p>
+              <p>Pur mantenendo un footprint relativamente basso, DAC3 fornisce prestazioni eccellenti su compiti in lingua italiana, come traduzione, risposta a domande e completamento di testo.</p>
+              <div class="links-row">
+                <a href="https://huggingface.co/Mattimax/DATA-AI_Chat_3_0.5B" target="_blank" rel="noopener" class="link">Scopri DAC3 →</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card-large glow">
+            <div class="card-body">
+              <h3>DAC5 (In Sviluppo)</h3>
+              <p>La nostra visione per il futuro. DAC5 è concepito come un modello ibrido ad alta capacità: combinare architetture moderne e tecniche di quantizzazione avanzate per massimizzare le prestazioni mantenendo efficienza.</p>
+              <p>Stiamo lavorando sul suo allenamento con dati italiani e multilingue, con l’obiettivo di fornire uno strumento versatile per ricerca, produzione di contenuti e applicazioni conversation AI.</p>
+              <p>Prevediamo una roadmap con versioni alpha, beta e release stabili. Controlla il nostro GitHub / Hugging Face per aggiornamenti.</p>
+            </div>
+          </article>
         </div>
-        <nav class="nav">
-            <a href="../index.html">Home</a>
-            <a href="dac.html" class="active">DAC</a>
-            <a href="datanet.html">DATANET</a>
-            <a href="progetti.html">Progetti</a>
-            <a href="chi-siamo.html">Chi siamo?</a>
-        </nav>
-        <button id="menuToggle" class="menu-toggle" aria-label="Apri menu">☰</button>
-    </header>
+      </div>
+    </section>
 
-    <main>
-        <section class="hero">
-            <div class="section-inner">
-                <img src="https://huggingface.co/Mattimax/DAC4.3/resolve/main/DAC_Logo.png" alt="DAC Logo" class="logo">
-                <h1 class="section-title">La Serie DAC</h1>
-                <p class="lead">Eccellenza nell'Intelligenza Artificiale Italiana: modelli ottimizzati per l'edge computing</p>
+    <section class="section alt" id="little-dac">
+      <div class="section-inner">
+        <h2 class="section-title">Little DAC Collection</h2>
+        <p class="lead">Modelli ultra-efficienti per dispositivi con risorse limitate.</p>
+        <div class="cards-grid">
+          <article class="card-large glow">
+            <div class="card-body">
+              <img src="https://huggingface.co/Mattimax/DACMini/resolve/main/DACMini_Logo/DACMini_Logo.png" alt="DACMini Logo" style="width: 120px; margin-bottom: 20px;">
+              <h3>DACMini-IT</h3>
+              <p><strong>Dimensione:</strong> ~109 M parametri</p>
+              <p>DACMini-IT è pensato per l’interazione in italiano. Nonostante le sue dimensioni compatte, offre una comprensione del linguaggio notevole e può eseguire compiti come chatbot, completamento di testo e istruzioni.</p>
+              <div class="links-row">
+                <a href="https://huggingface.co/Mattimax/DACMini-IT" target="_blank" rel="noopener" class="link">Scopri DACMini-IT →</a>
+              </div>
             </div>
-        </section>
+          </article>
 
-        <section class="section" id="serie-classica">
-            <div class="section-inner">
-                <h2 class="section-title">Serie Classica DAC</h2>
-                <div class="cards-grid">
-                    <article class="card-large glow">
-                        <div class="card-body">
-                            <h3>DAC4.3</h3>
-                            <p><strong>Dimensione:</strong> ~1B parametri</p>
-                            <p>L'ultimo modello della serie classica, che unisce potenza e versatilità. Costruito per gestire compiti complessi mantenendo l'efficienza.</p>
-                            <div class="links-row">
-                                <a href="https://huggingface.co/Mattimax/DAC4.3" class="link" target="_blank" rel="noopener">Esplora DAC4.3 →</a>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="card-large glow">
-                        <div class="card-body">
-                            <h3>DAC3</h3>
-                            <p><strong>Dimensione:</strong> 0.5B parametri</p>
-                            <p>Il capolavoro assoluto della serie. L'equilibrio perfetto tra capacità e leggerezza. Performance straordinarie su compiti in italiano.</p>
-                            <div class="links-row">
-                                <a href="https://huggingface.co/Mattimax/DATA-AI_Chat_3_0.5B" class="link" target="_blank" rel="noopener">Scopri DAC3 →</a>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="card-large glow muted">
-                        <div class="card-body">
-                            <h3>DAC5 (In Sviluppo)</h3>
-                            <p>Il nostro progetto più ambizioso: il più grande e potente modello DAC mai creato. Architettura ibrida e training avanzato.</p>
-                        </div>
-                    </article>
-                </div>
+          <article class="card-large glow">
+            <div class="card-body">
+              <img src="https://huggingface.co/Mattimax/microDAC/resolve/main/microDAC_Logo.png" alt="microDAC Logo" style="width: 120px; margin-bottom: 20px;">
+              <h3>microDAC</h3>
+              <p>Una variante sperimentale pensata per microcontroller e dispositivi embedded con risorse estremamente limitate.</p>
+              <p>Stiamo esplorando tecniche di quantizzazione estrema e inference ultra-ottimizzata per portare l’AI su device estremamente piccoli.</p>
+              <div class="links-row">
+                <a href="https://huggingface.co/Mattimax/microDAC" target="_blank" rel="noopener" class="link">Approfondisci microDAC →</a>
+              </div>
             </div>
-        </section>
+          </article>
 
-        <section class="section alt" id="little-dac">
-            <div class="section-inner">
-                <h2 class="section-title">Little DAC Collection</h2>
-                <p class="lead">La nostra collezione di modelli ultra-efficienti per dispositivi edge</p>
-                
-                <div class="cards-grid">
-                    <article class="card-large glow">
-                        <div class="card-body">
-                            <img src="https://huggingface.co/Mattimax/DACMini/resolve/main/DACMini_Logo/DACMini_Logo.png" alt="DACMini Logo" style="width: 120px; margin-bottom: 20px;">
-                            <h3>DACMini-IT</h3>
-                            <p><strong>Dimensione:</strong> 109M parametri</p>
-                            <p>Il più piccolo LLM al mondo capace di parlare italiano con precisione. Ottimizzato per dialogo e istruzioni.</p>
-                            <div class="links-row">
-                                <a href="https://huggingface.co/Mattimax/DACMini-IT" class="link" target="_blank">Scopri DACMini-IT →</a>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="card-large glow">
-                        <div class="card-body">
-                            <img src="https://huggingface.co/Mattimax/microDAC/resolve/main/microDAC_Logo.png" alt="microDAC Logo" style="width: 120px; margin-bottom: 20px;">
-                            <h3>microDAC</h3>
-                            <p>Serie sperimentale per dispositivi ultra-low-power e applicazioni embedded.</p>
-                            <div class="links-row">
-                                <a href="https://huggingface.co/Mattimax/microDAC" class="link" target="_blank" rel="noopener">Scopri microDAC →</a>
-                            </div>
-                        </div>
-                    </article>
-                    
-                    <article class="card-large glow">
-                        <div class="card-body">
-                            <img src="https://huggingface.co/Mattimax/PicoDAC/resolve/main/PicoDAC_Logo/PicoDAC_Logo.png" alt="PicoDAC Logo" style="width: 120px; margin-bottom: 20px;">
-                            <h3>PicoDAC</h3>
-                            <p>Modelli ultra-leggeri ottimizzati per latenza minima e footprint ridotto.</p>
-                            <div class="links-row">
-                                <a href="https://huggingface.co/Mattimax/PicoDAC" class="link" target="_blank" rel="noopener">Scopri PicoDAC →</a>
-                            </div>
-                        </div>
-                    </article>
-                    
-                </div>
-
-                <div class="links-row" style="justify-content: center; margin-top: 2rem;">
-                    <a href="https://huggingface.co/collections/Mattimax/little-dac-collection" class="link" target="_blank">Esplora l'intera Little DAC Collection →</a>
-                </div>
+          <article class="card-large glow">
+            <div class="card-body">
+              <img src="https://huggingface.co/Mattimax/PicoDAC/resolve/main/PicoDAC_Logo/PicoDAC_Logo.png" alt="PicoDAC Logo" style="width: 120px; margin-bottom: 20px;">
+              <h3>PicoDAC</h3>
+              <p>La nostra soluzione più leggera possibile: latenza ultra-bassa, footprint minimale e progettato per casi d’uso dove ogni megabyte conta.</p>
+              <div class="links-row">
+                <a href="https://huggingface.co/Mattimax/PicoDAC" target="_blank" rel="noopener" class="link">Scopri PicoDAC →</a>
+              </div>
             </div>
-        </section>
-
-        <section class="section" id="dataset">
-            <div class="section-inner">
-                <h2 class="section-title">Dataset e Risorse</h2>
-                <div class="cards-grid">
-                    <article class="card-large glow">
-                        <div class="card-body" style="display: flex; flex-direction: column; height: 100%;">
-                            <div>
-                                <h3>Dataset DAC</h3>
-                                <p>La nostra collezione di dataset curati per l'addestramento di modelli in italiano.</p>
-                            </div>
-                            <div class="links-row" style="margin-top: auto;">
-                                <a href="https://huggingface.co/collections/Mattimax/data-ai-datasets" class="link" target="_blank">Esplora i Dataset →</a>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="card-large glow">
-                        <div class="card-body" style="display: flex; flex-direction: column; height: 100%;">
-                            <div>
-                                <h3>Documentazione</h3>
-                                <p>Guide tecniche, esempi di utilizzo e best practices per i modelli DAC.</p>
-                            </div>
-                            <div class="links-row" style="margin-top: auto;">
-                                <a href="https://github.com/M-INC-01" class="link" target="_blank" rel="noopener">GitHub M.INC. →</a>
-                                <a href="https://huggingface.co/Mattimax" class="link" target="_blank" rel="noopener">Hugging Face →</a>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="card-large glow">
-                        <div class="card-body" style="display: flex; flex-direction: column; height: 100%;">
-                            <div>
-                                <img src="https://raw.githubusercontent.com/ollama/ollama/main/docs/ollama.png" alt="Ollama Logo" style="width: 120px; margin-bottom: 20px; border-radius: 12px;">
-                                <h3>Modelli su Ollama</h3>
-                                <p>La nostra collezione di modelli ottimizzati per l'esecuzione locale attraverso Ollama.</p>
-                            </div>
-                            <p style="margin-top: auto;"><a class="rainbow-pill" href="https://ollama.com/M_INC" target="_blank"><span class="inner">Modelli Ollama</span></a></p>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="site-footer">
-        <p>&copy; <span id="year"></span> M.INC. — Marzorati Incorporation</p>
-        <div class="social-links">
-            <a href="https://huggingface.co/Mattimax" target="_blank" rel="noopener" class="link">Hugging Face</a>
-            <a href="https://github.com/M-INC-01" target="_blank" rel="noopener" class="link">GitHub</a>
+          </article>
         </div>
-    </footer>
 
-    <script src="../scripts.js"></script>
+        <div class="links-row" style="justify-content: center; margin-top: 2rem;">
+          <a href="https://huggingface.co/collections/Mattimax/little-dac-collection" class="link" target="_blank">Esplora l’intera collezione →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="dataset">
+      <div class="section-inner">
+        <h2 class="section-title">Dataset & Risorse</h2>
+        <div class="cards-grid">
+          <article class="card-large glow">
+            <div class="card-body">
+              <h3>Dataset DAC</h3>
+              <p>Una raccolta curata di dataset in lingua italiana e multilingue, pensata per l’addestramento di modelli linguistici.</p>
+              <p>I dataset sono documentati, con metadata completi e licenze chiare per uso open source.</p>
+              <div class="links-row">
+                <a href="https://huggingface.co/collections/Mattimax/data-ai-datasets" target="_blank" rel="noopener" class="link">Esplora i Dataset →</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card-large glow">
+            <div class="card-body">
+              <h3>Documentazione Tecnica</h3>
+              <p>Guide, API reference, tutorial e best practices per l’uso dei modelli DAC, dalla quantizzazione al deployment su edge.</p>
+              <div class="links-row">
+                <a href="https://github.com/M-INC-01" target="_blank" rel="noopener" class="link">GitHub M.INC. →</a>
+                <a href="https://huggingface.co/Mattimax" target="_blank" rel="noopener" class="link">Hugging Face →</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card-large glow">
+            <div class="card-body">
+              <h3>Modelli su Ollama</h3>
+              <p>Versioni ottimizzate dei modelli DAC per l’esecuzione locale tramite Ollama.</p>
+              <p>Stable, efficienti e facilmente integrabili nei workflow di inferenza su laptop o server locali.</p>
+              <div class="links-row">
+                <a href="https://ollama.com/M_INC" target="_blank" rel="noopener" class="link">Modelli Ollama →</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="ads-section">
+      <div class="section-inner">
+        <ins class="adsbygoogle"
+             style="display:block; text-align:center;"
+             data-ad-client="ca-pub-4680780116594133"
+             data-ad-slot="1234567892"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year"></span> M.INC. — Marzorati Incorporation</p>
+  </footer>
+
+  <script src="../scripts.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
-
 </html>
-
