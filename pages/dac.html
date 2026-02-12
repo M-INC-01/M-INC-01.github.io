@@ -5,173 +5,709 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Serie DAC – M.INC.</title>
   <meta name="description" content="Scopri la serie DAC di M.INC.: modelli LLM italiani ottimizzati per edge computing, da DAC4.3 a DACMini e oltre." />
-  <link rel="stylesheet" href="../styles.css" />
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4680780116594133" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #020408;
+      --bg-secondary: #0a0f1a;
+      --bg-card: rgba(15, 23, 36, 0.7);
+      --text-primary: #ffffff;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --accent-cyan: #00f0ff;
+      --accent-purple: #bd00ff;
+      --accent-blue: #0066ff;
+      --accent-green: #00ff88;
+      --gradient-primary: linear-gradient(135deg, #00f0ff 0%, #0066ff 50%, #bd00ff 100%);
+      --gradient-secondary: linear-gradient(90deg, #00f0ff, #bd00ff);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --shadow-glow: 0 0 40px rgba(0, 240, 255, 0.15);
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      background: 
+        radial-gradient(ellipse at 20% 80%, rgba(0, 102, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(189, 0, 255, 0.1) 0%, transparent 50%),
+        var(--bg-primary);
+    }
+
+    .bg-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      z-index: -1;
+      background-image: 
+        linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      transform: perspective(500px) rotateX(60deg) translateY(-100px) translateZ(-200px);
+      animation: gridMove 25s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes gridMove {
+      0% { transform: perspective(500px) rotateX(60deg) translateY(0) translateZ(-200px); }
+      100% { transform: perspective(500px) rotateX(60deg) translateY(60px) translateZ(-200px); }
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1.25rem 4vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(20px);
+      background: rgba(2, 4, 8, 0.8);
+      border-bottom: 1px solid var(--glass-border);
+      transition: all 0.4s var(--ease-out-expo);
+    }
+
+    .site-header.scrolled {
+      padding: 0.75rem 4vw;
+      background: rgba(2, 4, 8, 0.95);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .brand { display: flex; flex-direction: column; gap: 0.25rem; }
+    
+    .brand h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: titleGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes titleGlow {
+      from { filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.3)); }
+      to { filter: drop-shadow(0 0 20px rgba(189, 0, 255, 0.5)); }
+    }
+
+    .brand .tag {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-weight: 500;
+    }
+
+    .nav {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .nav a {
+      position: relative;
+      padding: 0.6rem 1.2rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border-radius: 100px;
+      transition: all 0.3s var(--ease-out-expo);
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .nav a::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gradient-primary);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: inherit;
+    }
+
+    .nav a:hover, .nav a.active { color: var(--text-primary); transform: translateY(-2px); }
+    .nav a:hover::before, .nav a.active::before { opacity: 0.15; }
+    
+    .nav a.active::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20%;
+      height: 2px;
+      background: var(--gradient-secondary);
+      border-radius: 2px;
+      box-shadow: 0 0 10px var(--accent-cyan);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--glass-border);
+      color: var(--text-primary);
+      padding: 0.6rem;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1.25rem;
+      transition: all 0.3s var(--ease-elastic);
+      z-index: 1002;
+    }
+
+    .menu-toggle:hover {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+      transform: scale(1.05);
+    }
+
+    main { margin-top: 80px; }
+
+    .page-hero {
+      padding: 6rem 6vw 4rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .page-hero .logo {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 2rem;
+      filter: drop-shadow(0 0 30px rgba(0, 240, 255, 0.3));
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .page-hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .page-hero h1 span {
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .lead {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .section { padding: 4rem 6vw; position: relative; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-label {
+      display: inline-block;
+      padding: 0.6rem 1.2rem;
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      border-radius: 100px;
+      color: var(--accent-cyan);
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-subtitle {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .model-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 2.5rem;
+      transition: all 0.5s var(--ease-out-expo);
+      opacity: 0;
+      transform: translateY(30px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .model-card.in-view {
+      animation: fadeInUp 0.8s var(--ease-out-expo) forwards;
+    }
+
+    .model-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gradient-primary);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s var(--ease-out-expo);
+    }
+
+    .model-card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(0, 240, 255, 0.3);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), var(--shadow-glow);
+    }
+
+    .model-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .model-card .model-logo {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 1.5rem;
+      border-radius: 16px;
+      object-fit: contain;
+    }
+
+    .model-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .model-card .params {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      border-radius: 100px;
+      font-size: 0.8rem;
+      color: var(--accent-cyan);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .model-card p {
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .model-card .features {
+      list-style: none;
+      margin: 1.5rem 0;
+    }
+
+    .model-card .features li {
+      color: var(--text-secondary);
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .model-card .features li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--accent-green);
+      font-weight: bold;
+    }
+
+    .link-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--glass-border);
+      border-radius: 100px;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: all 0.3s var(--ease-out-expo);
+    }
+
+    .link-btn:hover {
+      background: rgba(0, 240, 255, 0.1);
+      border-color: var(--accent-cyan);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .link-btn.primary {
+      background: var(--gradient-primary);
+      border: none;
+      color: white;
+    }
+
+    .link-btn.primary:hover {
+      box-shadow: 0 10px 30px rgba(0, 102, 255, 0.4);
+    }
+
+    .section-alt {
+      background: linear-gradient(180deg, transparent 0%, rgba(0, 102, 255, 0.03) 50%, transparent 100%);
+    }
+
+    .coming-soon {
+      position: relative;
+    }
+
+    .coming-soon::after {
+      content: 'In Sviluppo';
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      padding: 0.4rem 1rem;
+      background: rgba(255, 193, 7, 0.1);
+      border: 1px solid rgba(255, 193, 7, 0.3);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      color: #ffc107;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .collection-link {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .collection-link a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: 100px;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s var(--ease-out-expo);
+    }
+
+    .collection-link a:hover {
+      border-color: var(--accent-cyan);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .site-footer {
+      padding: 4rem 6vw 2rem;
+      border-top: 1px solid var(--glass-border);
+      background: var(--bg-secondary);
+      text-align: center;
+    }
+
+    .site-footer p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-10px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes slideOut {
+      from { opacity: 1; transform: translateY(0) scale(1); }
+      to { opacity: 0; transform: translateY(-10px) scale(0.95); }
+    }
+
+    @media (max-width: 768px) {
+      .nav {
+        display: none;
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        background: rgba(2, 4, 8, 0.98);
+        backdrop-filter: blur(20px);
+        padding: 1.5rem;
+        border-radius: 16px;
+        border: 1px solid var(--glass-border);
+        flex-direction: column;
+        gap: 0.5rem;
+        min-width: 200px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        z-index: 1001;
+      }
+
+      .nav.active { display: flex; animation: slideIn 0.3s var(--ease-out-expo); }
+      .nav.closing { animation: slideOut 0.3s var(--ease-out-expo) forwards; }
+      .nav a { padding: 0.8rem 1.2rem; width: 100%; text-align: center; }
+      .menu-toggle { display: block; }
+      .page-hero { padding: 5rem 4vw 3rem; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .model-card { padding: 2rem; }
+      .link-row { flex-direction: column; }
+      .link-btn { width: 100%; justify-content: center; }
+    }
+
+    ::selection { background: rgba(0, 240, 255, 0.3); color: white; }
+  </style>
 </head>
 <body>
-  <header class="site-header">
+  <div class="bg-canvas"></div>
+  <div class="bg-grid"></div>
+
+  <header class="site-header" id="header">
     <div class="brand">
       <h1>M.INC.</h1>
-      <p class="tag">Marzorati Incorporation — LLM & Edge Computing</p>
+      <p class="tag">Marzorati Incorporation</p>
     </div>
-    <nav class="nav">
+    <nav class="nav" id="mainNav">
       <a href="../index.html">Home</a>
       <a href="dac.html" class="active">DAC</a>
       <a href="datanet.html">DATANET</a>
       <a href="progetti.html">Progetti</a>
       <a href="chi-siamo.html">Chi siamo</a>
-      <a href="privacy.html">Privacy / Termini</a>
     </nav>
-    <button id="menuToggle" class="menu-toggle" aria-label="Apri menu">☰</button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Apri menu">☰</button>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="section-inner">
-        <img src="https://huggingface.co/Mattimax/DAC4.3/resolve/main/DAC_Logo.png" alt="DAC Logo" class="logo">
-        <h1 class="section-title">Serie DAC</h1>
-        <p class="lead">Modelli linguistici potenti, efficienti e ottimizzati per l’edge computing.</p>
-      </div>
+    <section class="page-hero">
+      <img src="https://huggingface.co/Mattimax/DAC4.3/resolve/main/DAC_Logo.png" alt="DAC Logo" class="logo">
+      <h1>Serie <span>DAC</span></h1>
+      <p class="lead">Modelli linguistici potenti, efficienti e ottimizzati per l'edge computing. Tecnologia italiana per l'AI del futuro.</p>
     </section>
 
-    <section class="section" id="serie-classica">
+    <section class="section">
       <div class="section-inner">
-        <h2 class="section-title">Serie Classica DAC</h2>
+        <div class="section-header">
+          <span class="section-label">Serie Classica</span>
+          <h2 class="section-title">Modelli DAC Principali</h2>
+          <p class="section-subtitle">Dalla ricerca all'applicazione industriale</p>
+        </div>
+
         <div class="cards-grid">
-          <article class="card-large glow">
-            <div class="card-body">
-              <h3>DAC4.3</h3>
-              <p><strong>Dimensione:</strong> ~1 B parametri</p>
-              <p>DAC4.3 è il fiore all’occhiello della nostra serie classica. È progettato per fornire un equilibrio ottimale tra capacità di generalizzazione, efficienza e latenza operativa su dispositivi con risorse limitate.</p>
-              <p>Grazie alla sua architettura altamente ottimizzata, DAC4.3 supporta applicazioni complesse come il dialogo, la generazione di testo e l’istruzione su dispositivi edge.</p>
-              <div class="links-row">
-                <a href="https://huggingface.co/Mattimax/DAC4.3" target="_blank" rel="noopener" class="link">Esplora DAC4.3 →</a>
-              </div>
+          <div class="model-card">
+            <h3>DAC4.3</h3>
+            <span class="params">~1B Parametri</span>
+            <p>Il fiore all'occhiello della nostra serie classica. Equilibrio ottimale tra capacità di generalizzazione, efficienza e latenza su dispositivi edge.</p>
+            <ul class="features">
+              <li>Dialogo avanzato e generazione testo</li>
+              <li>Istruzione su dispositivi edge</li>
+              <li>Architettura altamente ottimizzata</li>
+              <li>Supporto multilingue prioritario italiano</li>
+            </ul>
+            <div class="link-row">
+              <a href="https://huggingface.co/Mattimax/DAC4.3" target="_blank" rel="noopener" class="link-btn primary">Esplora su Hugging Face →</a>
             </div>
-          </article>
+          </div>
 
-          <article class="card-large glow">
-            <div class="card-body">
-              <h3>DAC3</h3>
-              <p><strong>Dimensione:</strong> ~500M parametri</p>
-              <p>DAC3 è stato progettato per essere leggero ma sorprendentemente capace. È ideale per applicazioni dove la potenza di calcolo o la memoria sono limitate, senza compromettere qualità di linguaggio o comprensione.</p>
-              <p>Pur mantenendo un footprint relativamente basso, DAC3 fornisce prestazioni eccellenti su compiti in lingua italiana, come traduzione, risposta a domande e completamento di testo.</p>
-              <div class="links-row">
-                <a href="https://huggingface.co/Mattimax/DATA-AI_Chat_3_0.5B" target="_blank" rel="noopener" class="link">Scopri DAC3 →</a>
-              </div>
+          <div class="model-card">
+            <h3>DAC3</h3>
+            <span class="params">~500M Parametri</span>
+            <p>Leggero ma sorprendentemente capace. Ideale dove potenza di calcolo e memoria sono limitate, senza compromettere qualità.</p>
+            <ul class="features">
+              <li>Footprint memoria ridotto</li>
+              <li>Prestazioni eccellenti in italiano</li>
+              <li>Traduzione e Q&A</li>
+              <li>Completamento testo avanzato</li>
+            </ul>
+            <div class="link-row">
+              <a href="https://huggingface.co/Mattimax/DATA-AI_Chat_3_0.5B" target="_blank" rel="noopener" class="link-btn primary">Scopri DAC3 →</a>
             </div>
-          </article>
+          </div>
 
-          <article class="card-large glow">
-            <div class="card-body">
-              <h3>DAC5 (In Sviluppo)</h3>
-              <p>La nostra visione per il futuro. DAC5 è concepito come un modello ibrido ad alta capacità: combinare architetture moderne e tecniche di quantizzazione avanzate per massimizzare le prestazioni mantenendo efficienza.</p>
-              <p>Stiamo lavorando sul suo allenamento con dati italiani e multilingue, con l’obiettivo di fornire uno strumento versatile per ricerca, produzione di contenuti e applicazioni conversation AI.</p>
-              <p>Prevediamo una roadmap con versioni alpha, beta e release stabili. Controlla il nostro GitHub / Hugging Face per aggiornamenti.</p>
+          <div class="model-card coming-soon">
+            <h3>DAC5</h3>
+            <span class="params">Prossimamente</span>
+            <p>La nostra visione per il futuro. Modello ibrido ad alta capacità con architetture moderne e quantizzazione avanzata.</p>
+            <ul class="features">
+              <li>Allenamento dati italiani e multilingue</li>
+              <li>Ricerca e produzione contenuti</li>
+              <li>Conversation AI next-gen</li>
+              <li>Roadmap: alpha → beta → stable</li>
+            </ul>
+            <div class="link-row">
+              <a href="https://github.com/M-INC-01" target="_blank" rel="noopener" class="link-btn">Segui su GitHub →</a>
             </div>
-          </article>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section alt" id="little-dac">
+    <section class="section section-alt">
       <div class="section-inner">
-        <h2 class="section-title">Little DAC Collection</h2>
-        <p class="lead">Modelli ultra-efficienti per dispositivi con risorse limitate.</p>
+        <div class="section-header">
+          <span class="section-label" style="background: rgba(0, 255, 136, 0.1); border-color: rgba(0, 255, 136, 0.2); color: var(--accent-green);">Ultra Light</span>
+          <h2 class="section-title">Little DAC Collection</h2>
+          <p class="section-subtitle">Modelli ultra-efficienti per dispositivi con risorse limitate</p>
+        </div>
+
         <div class="cards-grid">
-          <article class="card-large glow">
-            <div class="card-body">
-              <img src="https://huggingface.co/Mattimax/DACMini/resolve/main/DACMini_Logo/DACMini_Logo.png" alt="DACMini Logo" style="width: 120px; margin-bottom: 20px;">
-              <h3>DACMini-IT</h3>
-              <p><strong>Dimensione:</strong> ~109 M parametri</p>
-              <p>DACMini-IT è pensato per l’interazione in italiano. Nonostante le sue dimensioni compatte, offre una comprensione del linguaggio notevole e può eseguire compiti come chatbot, completamento di testo e istruzioni.</p>
-              <div class="links-row">
-                <a href="https://huggingface.co/Mattimax/DACMini-IT" target="_blank" rel="noopener" class="link">Scopri DACMini-IT →</a>
-              </div>
+          <div class="model-card">
+            <img src="https://huggingface.co/Mattimax/DACMini/resolve/main/DACMini_Logo/DACMini_Logo.png" alt="DACMini" class="model-logo">
+            <h3>DACMini-IT</h3>
+            <span class="params">~109M Parametri</span>
+            <p>Il più piccolo LLM italiano funzionale. Compattezza straordinaria con comprensione del linguaggio notevole.</p>
+            <ul class="features">
+              <li>Chatbot responsive</li>
+              <li>Completamento testo</li>
+              <li>Istruzioni contestuali</li>
+              <li>Ideale per mobile e IoT</li>
+            </ul>
+            <div class="link-row">
+              <a href="https://huggingface.co/Mattimax/DACMini-IT" target="_blank" rel="noopener" class="link-btn primary">Scopri DACMini →</a>
             </div>
-          </article>
+          </div>
 
-          <article class="card-large glow">
-            <div class="card-body">
-              <img src="https://huggingface.co/Mattimax/microDAC/resolve/main/microDAC_Logo.png" alt="microDAC Logo" style="width: 120px; margin-bottom: 20px;">
-              <h3>microDAC</h3>
-              <p>Una variante sperimentale pensata per microcontroller e dispositivi embedded con risorse estremamente limitate.</p>
-              <p>Stiamo esplorando tecniche di quantizzazione estrema e inference ultra-ottimizzata per portare l’AI su device estremamente piccoli.</p>
-              <div class="links-row">
-                <a href="https://huggingface.co/Mattimax/microDAC" target="_blank" rel="noopener" class="link">Approfondisci microDAC →</a>
-              </div>
+          <div class="model-card">
+            <div class="model-logo" style="background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue)); display: flex; align-items: center; justify-content: center; color: white; font-family: 'Space Grotesk'; font-size: 2rem; font-weight: bold;">μ</div>
+            <h3>microDAC</h3>
+            <span class="params">Sperimentale</span>
+            <p>Per microcontroller e dispositivi embedded con risorse estremamente limitate. Quantizzazione estrema e inference ultra-ottimizzata.</p>
+            <ul class="features">
+              <li>Microcontroller compatible</li>
+              <li>Quantizzazione estrema</li>
+              <li>Inference ultra-ottimizzata</li>
+              <li>AI su device minimi</li>
+            </ul>
+            <div class="link-row">
+              <a href="https://huggingface.co/Mattimax/microDAC" target="_blank" rel="noopener" class="link-btn primary">Approfondisci →</a>
             </div>
-          </article>
+          </div>
 
-          <article class="card-large glow">
-            <div class="card-body">
-              <img src="https://huggingface.co/Mattimax/PicoDAC/resolve/main/PicoDAC_Logo/PicoDAC_Logo.png" alt="PicoDAC Logo" style="width: 120px; margin-bottom: 20px;">
-              <h3>PicoDAC</h3>
-              <p>La nostra soluzione più leggera possibile: latenza ultra-bassa, footprint minimale e progettato per casi d’uso dove ogni megabyte conta.</p>
-              <div class="links-row">
-                <a href="https://huggingface.co/Mattimax/PicoDAC" target="_blank" rel="noopener" class="link">Scopri PicoDAC →</a>
-              </div>
+          <div class="model-card">
+            <div class="model-logo" style="background: linear-gradient(135deg, var(--accent-cyan), var(--accent-green)); display: flex; align-items: center; justify-content: center; color: var(--bg-primary); font-family: 'Space Grotesk'; font-size: 2rem; font-weight: bold;">P</div>
+            <h3>PicoDAC</h3>
+            <span class="params">Nano Scale</span>
+            <p>La soluzione più leggera possibile. Latenza ultra-bassa, footprint minimale. Dove ogni megabyte conta.</p>
+            <ul class="features">
+              <li>Latenza minima</li>
+              <li>Footprint irrisorio</li>
+              <li>Edge estremo</li>
+              <li>IoT massivo</li>
+            </ul>
+            <div class="link-row">
+              <a href="https://huggingface.co/Mattimax/PicoDAC" target="_blank" rel="noopener" class="link-btn primary">Scopri PicoDAC →</a>
             </div>
-          </article>
+          </div>
         </div>
 
-        <div class="links-row" style="justify-content: center; margin-top: 2rem;">
-          <a href="https://huggingface.co/collections/Mattimax/little-dac-collection" class="link" target="_blank">Esplora l’intera collezione →</a>
+        <div class="collection-link">
+          <a href="https://huggingface.co/collections/Mattimax/little-dac-collection" target="_blank" rel="noopener">
+            Esplora l'intera Little DAC Collection →
+          </a>
         </div>
       </div>
     </section>
 
-    <section class="section" id="dataset">
+    <section class="section">
       <div class="section-inner">
-        <h2 class="section-title">Dataset & Risorse</h2>
+        <div class="section-header">
+          <span class="section-label" style="background: rgba(189, 0, 255, 0.1); border-color: rgba(189, 0, 255, 0.2); color: var(--accent-purple);">Risorse</span>
+          <h2 class="section-title">Dataset & Strumenti</h2>
+          <p class="section-subtitle">Tutto ciò che serve per costruire con DAC</p>
+        </div>
+
         <div class="cards-grid">
-          <article class="card-large glow">
-            <div class="card-body">
-              <h3>Dataset DAC</h3>
-              <p>Una raccolta curata di dataset in lingua italiana e multilingue, pensata per l’addestramento di modelli linguistici.</p>
-              <p>I dataset sono documentati, con metadata completi e licenze chiare per uso open source.</p>
-              <div class="links-row">
-                <a href="https://huggingface.co/collections/Mattimax/data-ai-datasets" target="_blank" rel="noopener" class="link">Esplora i Dataset →</a>
-              </div>
+          <div class="model-card">
+            <h3>📊 Dataset DAC</h3>
+            <p>Raccolta curata di dataset in italiano e multilingue per l'addestramento di modelli linguistici.</p>
+            <ul class="features">
+              <li>Metadata completi</li>
+              <li>Licenze chiare open source</li>
+              <li>Documentazione dettagliata</li>
+            </ul>
+            <div class="link-row">
+              <a href="https://huggingface.co/collections/Mattimax/data-ai-datasets" target="_blank" rel="noopener" class="link-btn">Esplora Dataset →</a>
             </div>
-          </article>
+          </div>
 
-          <article class="card-large glow">
-            <div class="card-body">
-              <h3>Documentazione Tecnica</h3>
-              <p>Guide, API reference, tutorial e best practices per l’uso dei modelli DAC, dalla quantizzazione al deployment su edge.</p>
-              <div class="links-row">
-                <a href="https://github.com/M-INC-01" target="_blank" rel="noopener" class="link">GitHub M.INC. →</a>
-                <a href="https://huggingface.co/Mattimax" target="_blank" rel="noopener" class="link">Hugging Face →</a>
-              </div>
+          <div class="model-card">
+            <h3>📚 Documentazione</h3>
+            <p>Guide, API reference, tutorial e best practices per l'uso dei modelli DAC.</p>
+            <ul class="features">
+              <li>Quantizzazione avanzata</li>
+              <li>Deployment su edge</li>
+              <li>Ottimizzazione performance</li>
+            </ul>
+            <div class="link-row">
+              <a href="https://github.com/M-INC-01" target="_blank" rel="noopener" class="link-btn">GitHub →</a>
+              <a href="https://huggingface.co/Mattimax" target="_blank" rel="noopener" class="link-btn">Hugging Face →</a>
             </div>
-          </article>
+          </div>
 
-          <article class="card-large glow">
-            <div class="card-body">
-              <h3>Modelli su Ollama</h3>
-              <p>Versioni ottimizzate dei modelli DAC per l’esecuzione locale tramite Ollama.</p>
-              <p>Stable, efficienti e facilmente integrabili nei workflow di inferenza su laptop o server locali.</p>
-              <div class="links-row">
-                <a href="https://ollama.com/M_INC" target="_blank" rel="noopener" class="link">Modelli Ollama →</a>
-              </div>
+          <div class="model-card">
+            <h3>🦙 Modelli Ollama</h3>
+            <p>Versioni ottimizzate per esecuzione locale tramite Ollama. Stable, efficienti, facilmente integrabili.</p>
+            <ul class="features">
+              <li>Run locale semplice</li>
+              <li>Compatibilità laptop/server</li>
+              <li>Workflow ottimizzati</li>
+            </ul>
+            <div class="link-row">
+              <a href="https://ollama.com/M_INC" target="_blank" rel="noopener" class="link-btn primary">Modelli Ollama →</a>
             </div>
-          </article>
+          </div>
         </div>
-      </div>
-    </section>
-
-    <section class="ads-section">
-      <div class="section-inner">
-        <ins class="adsbygoogle"
-             style="display:block; text-align:center;"
-             data-ad-client="ca-pub-4680780116594133"
-             data-ad-slot="1234567892"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
       </div>
     </section>
   </main>
@@ -180,9 +716,56 @@
     <p>&copy; <span id="year"></span> M.INC. — Marzorati Incorporation</p>
   </footer>
 
-  <script src="../scripts.js"></script>
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      const header = document.getElementById('header');
+      window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 50) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+      }, { passive: true });
+
+      const menuToggle = document.getElementById('menuToggle');
+      const nav = document.getElementById('mainNav');
+      let isMenuOpen = false;
+
+      menuToggle?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        isMenuOpen = !isMenuOpen;
+        if (isMenuOpen) {
+          nav.classList.remove('closing');
+          nav.classList.add('active');
+          menuToggle.textContent = '✕';
+        } else {
+          nav.classList.remove('active');
+          nav.classList.add('closing');
+          menuToggle.textContent = '☰';
+          setTimeout(() => nav.classList.remove('closing'), 300);
+        }
+      });
+
+      document.addEventListener('click', (e) => {
+        if(isMenuOpen && nav && !nav.contains(e.target) && !menuToggle.contains(e.target)) {
+          nav.classList.remove('active');
+          nav.classList.add('closing');
+          menuToggle.textContent = '☰';
+          isMenuOpen = false;
+          setTimeout(() => nav.classList.remove('closing'), 300);
+        }
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      document.querySelectorAll('.model-card').forEach(el => observer.observe(el));
+    });
   </script>
 </body>
 </html>
