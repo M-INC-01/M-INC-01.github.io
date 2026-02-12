@@ -5,174 +5,676 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DATANET – M.INC.</title>
   <meta name="description" content="M.INC. DATANET: la nostra piattaforma Internet 2.0 per chat globale, gaming, condivisione e comunità moderna." />
-  <link rel="stylesheet" href="../styles.css" />
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4680780116594133" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #020408;
+      --bg-secondary: #0a0f1a;
+      --bg-card: rgba(15, 23, 36, 0.7);
+      --text-primary: #ffffff;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --accent-cyan: #00f0ff;
+      --accent-purple: #bd00ff;
+      --accent-blue: #0066ff;
+      --accent-green: #00ff88;
+      --gradient-primary: linear-gradient(135deg, #00f0ff 0%, #0066ff 50%, #bd00ff 100%);
+      --gradient-secondary: linear-gradient(90deg, #00f0ff, #bd00ff);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --shadow-glow: 0 0 40px rgba(0, 240, 255, 0.15);
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      background: 
+        radial-gradient(ellipse at 20% 80%, rgba(189, 0, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(0, 102, 255, 0.1) 0%, transparent 50%),
+        var(--bg-primary);
+    }
+
+    .bg-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      z-index: -1;
+      background-image: 
+        linear-gradient(rgba(189, 0, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      transform: perspective(500px) rotateX(60deg) translateY(-100px) translateZ(-200px);
+      animation: gridMove 25s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes gridMove {
+      0% { transform: perspective(500px) rotateX(60deg) translateY(0) translateZ(-200px); }
+      100% { transform: perspective(500px) rotateX(60deg) translateY(60px) translateZ(-200px); }
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1.25rem 4vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(20px);
+      background: rgba(2, 4, 8, 0.8);
+      border-bottom: 1px solid var(--glass-border);
+      transition: all 0.4s var(--ease-out-expo);
+    }
+
+    .site-header.scrolled {
+      padding: 0.75rem 4vw;
+      background: rgba(2, 4, 8, 0.95);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .brand { display: flex; flex-direction: column; gap: 0.25rem; }
+    
+    .brand h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: titleGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes titleGlow {
+      from { filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.3)); }
+      to { filter: drop-shadow(0 0 20px rgba(189, 0, 255, 0.5)); }
+    }
+
+    .brand .tag {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-weight: 500;
+    }
+
+    .nav {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .nav a {
+      position: relative;
+      padding: 0.6rem 1.2rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border-radius: 100px;
+      transition: all 0.3s var(--ease-out-expo);
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .nav a::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gradient-primary);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: inherit;
+    }
+
+    .nav a:hover, .nav a.active { color: var(--text-primary); transform: translateY(-2px); }
+    .nav a:hover::before, .nav a.active::before { opacity: 0.15; }
+    
+    .nav a.active::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20%;
+      height: 2px;
+      background: var(--gradient-secondary);
+      border-radius: 2px;
+      box-shadow: 0 0 10px var(--accent-cyan);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--glass-border);
+      color: var(--text-primary);
+      padding: 0.6rem;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1.25rem;
+      transition: all 0.3s var(--ease-elastic);
+      z-index: 1002;
+    }
+
+    .menu-toggle:hover {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+      transform: scale(1.05);
+    }
+
+    main { margin-top: 80px; }
+
+    .page-hero {
+      padding: 6rem 6vw 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: 'D';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 40vw;
+      font-weight: 700;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      opacity: 0.05;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .page-hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: -0.05em;
+    }
+
+    .page-hero h1 span {
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .lead {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .section { padding: 4rem 6vw; position: relative; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-label {
+      display: inline-block;
+      padding: 0.6rem 1.2rem;
+      background: rgba(189, 0, 255, 0.1);
+      border: 1px solid rgba(189, 0, 255, 0.2);
+      border-radius: 100px;
+      color: var(--accent-purple);
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-subtitle {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 2.5rem;
+      transition: all 0.5s var(--ease-out-expo);
+      opacity: 0;
+      transform: translateY(30px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card.in-view {
+      animation: fadeInUp 0.8s var(--ease-out-expo) forwards;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gradient-primary);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s var(--ease-out-expo);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(189, 0, 255, 0.3);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(189, 0, 255, 0.15);
+    }
+
+    .feature-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .feature-icon {
+      width: 70px;
+      height: 70px;
+      background: var(--gradient-primary);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      transition: all 0.3s var(--ease-elastic);
+    }
+
+    .feature-card:hover .feature-icon {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 0 30px rgba(0, 240, 255, 0.4);
+    }
+
+    .feature-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-card p {
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-list {
+      list-style: none;
+    }
+
+    .feature-list li {
+      color: var(--text-secondary);
+      padding: 0.6rem 0;
+      padding-left: 1.8rem;
+      position: relative;
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .feature-list li:last-child {
+      border-bottom: none;
+    }
+
+    .feature-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent-cyan);
+      font-weight: bold;
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover .feature-list li::before {
+      transform: translateX(5px);
+    }
+
+    .section-alt {
+      background: linear-gradient(180deg, transparent 0%, rgba(189, 0, 255, 0.03) 50%, transparent 100%);
+    }
+
+    .cta-section {
+      padding: 6rem 6vw;
+      text-align: center;
+      background: linear-gradient(180deg, transparent 0%, rgba(0, 240, 255, 0.05) 100%);
+    }
+
+    .cta-box {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 4rem;
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-box::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      background: var(--gradient-primary);
+      opacity: 0.1;
+      z-index: 0;
+    }
+
+    .cta-box > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-box h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .cta-box p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1.2rem 2.5rem;
+      background: var(--gradient-primary);
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 100px;
+      transition: all 0.4s var(--ease-out-expo);
+      box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 20px 50px rgba(0, 240, 255, 0.4);
+    }
+
+    .site-footer {
+      padding: 4rem 6vw 2rem;
+      border-top: 1px solid var(--glass-border);
+      background: var(--bg-secondary);
+      text-align: center;
+    }
+
+    .site-footer p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-10px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes slideOut {
+      from { opacity: 1; transform: translateY(0) scale(1); }
+      to { opacity: 0; transform: translateY(-10px) scale(0.95); }
+    }
+
+    @media (max-width: 768px) {
+      .nav {
+        display: none;
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        background: rgba(2, 4, 8, 0.98);
+        backdrop-filter: blur(20px);
+        padding: 1.5rem;
+        border-radius: 16px;
+        border: 1px solid var(--glass-border);
+        flex-direction: column;
+        gap: 0.5rem;
+        min-width: 200px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        z-index: 1001;
+      }
+
+      .nav.active { display: flex; animation: slideIn 0.3s var(--ease-out-expo); }
+      .nav.closing { animation: slideOut 0.3s var(--ease-out-expo) forwards; }
+      .nav a { padding: 0.8rem 1.2rem; width: 100%; text-align: center; }
+      .menu-toggle { display: block; }
+      .page-hero { padding: 5rem 4vw 3rem; }
+      .page-hero::before { font-size: 60vw; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .feature-card { padding: 2rem; }
+      .cta-box { padding: 2.5rem 2rem; }
+      .cta-box h2 { font-size: 1.8rem; }
+    }
+
+    ::selection { background: rgba(189, 0, 255, 0.3); color: white; }
+  </style>
 </head>
 <body>
-  <header class="site-header">
+  <div class="bg-canvas"></div>
+  <div class="bg-grid"></div>
+
+  <header class="site-header" id="header">
     <div class="brand">
       <h1>M.INC.</h1>
-      <p class="tag">Marzorati Incorporation — LLM & Edge Computing</p>
+      <p class="tag">Marzorati Incorporation</p>
     </div>
-    <nav class="nav">
+    <nav class="nav" id="mainNav">
       <a href="../index.html">Home</a>
       <a href="dac.html">DAC</a>
       <a href="datanet.html" class="active">DATANET</a>
       <a href="progetti.html">Progetti</a>
       <a href="chi-siamo.html">Chi siamo</a>
-      <a href="privacy.html">Privacy / Termini</a>
     </nav>
-    <button id="menuToggle" class="menu-toggle" aria-label="Apri menu">☰</button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Apri menu">☰</button>
   </header>
 
   <main>
-    <section class="hero">
+    <section class="page-hero">
+      <h1>DATA<span>NET</span></h1>
+      <p class="lead">L'Internet del futuro: comunicazione, comunità e intrattenimento integrati in un'unica piattaforma decentralizzata.</p>
+    </section>
+
+    <section class="section">
       <div class="section-inner">
-        <h1 class="section-title">DATANET</h1>
-        <p class="lead">L’Internet del futuro: comunicazione, comunità e intrattenimento integrati.</p>
+        <div class="section-header">
+          <span class="section-label">Comunicazione</span>
+          <h2 class="section-title">Chat & Messaggistica</h2>
+          <p class="section-subtitle">Connettività globale con privacy e sicurezza al primo posto</p>
+        </div>
+
+        <div class="cards-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🌍</div>
+            <h3>Chat Globale</h3>
+            <p>Una piattaforma unificata che connette persone in tempo reale, ovunque si trovino nel mondo.</p>
+            <ul class="feature-list">
+              <li>Traduzione automatica multilingue</li>
+              <li>Sticker ed emoticon personalizzati</li>
+              <li>Reazioni in tempo reale</li>
+              <li>Chat room tematiche</li>
+            </ul>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <h3>Chat Private</h3>
+            <p>Comunicazioni sicure con crittografia end-to-end e controllo totale della privacy.</p>
+            <ul class="feature-list">
+              <li>Crittografia end-to-end</li>
+              <li>Autodistruzione messaggi</li>
+              <li>Verifica identità 2FA</li>
+              <li>Controllo privacy avanzato</li>
+            </ul>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🎮</div>
+            <h3>Gaming Hub</h3>
+            <p>Spazio integrato per giocare, socializzare e competere con la community.</p>
+            <ul class="feature-list">
+              <li>Tornei multiplayer real-time</li>
+              <li>Classifiche globali e badge</li>
+              <li>Chat vocale integrata</li>
+              <li>Sistema ricompense</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="section-inner">
+        <div class="section-header">
+          <span class="section-label" style="background: rgba(0, 255, 136, 0.1); border-color: rgba(0, 255, 136, 0.2); color: var(--accent-green);">Contenuti</span>
+          <h2 class="section-title">Multimedia & Streaming</h2>
+          <p class="section-subtitle">Crea, condividi e scopri contenuti in alta qualità</p>
+        </div>
+
+        <div class="cards-grid">
+          <div class="feature-card">
+            <div class="feature-icon" style="background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan));">🎬</div>
+            <h3>Video Sharing</h3>
+            <p>Piattaforma integrata per la creazione, condivisione e scoperta di video.</p>
+            <ul class="feature-list">
+              <li>Streaming fino a 4K</li>
+              <li>Editor video integrato</li>
+              <li>Canali tematici</li>
+              <li>Playlist personalizzate</li>
+            </ul>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon" style="background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));">📁</div>
+            <h3>File Sharing</h3>
+            <p>Condivisione sicura e semplice per file di ogni tipo con anteprime integrate.</p>
+            <ul class="feature-list">
+              <li>Upload fino a 2GB</li>
+              <li>Anteprima integrata</li>
+              <li>Cartelle personali e pubbliche</li>
+              <li>Condivisione crittografata</li>
+            </ul>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon" style="background: linear-gradient(135deg, #ff006e, var(--accent-purple));">📡</div>
+            <h3>Live Streaming</h3>
+            <p>Trasmetti contenuti in diretta e interagisci con la community in tempo reale.</p>
+            <ul class="feature-list">
+              <li>Streaming Full HD / 4K</li>
+              <li>Chat interattiva</li>
+              <li>Moderazione avanzata</li>
+              <li>Sistema donazioni</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="section">
       <div class="section-inner">
-        <h2 class="section-title">Caratteristiche Principali</h2>
+        <div class="section-header">
+          <span class="section-label" style="background: rgba(0, 102, 255, 0.1); border-color: rgba(0, 102, 255, 0.2); color: var(--accent-blue);">Community</span>
+          <h2 class="section-title">Social & Eventi</h2>
+          <p class="section-subtitle">Costruisci la tua rete e partecipa alla community</p>
+        </div>
+
         <div class="cards-grid">
-          <article class="card-large glow">
-            <div class="card-body">
-              <h3>Chat Globale</h3>
-              <p>Una piattaforma unificata che connette persone in tempo reale, ovunque si trovino.</p>
-              <ul class="feature-list">
-                <li>Traduzione automatica multilingue</li>
-                <li>Sticker, emoticon personalizzati e reazioni</li>
-                <li>Chat room tematiche per interessi specifici</li>
-              </ul>
-            </div>
-          </article>
+          <div class="feature-card">
+            <div class="feature-icon" style="background: linear-gradient(135deg, var(--accent-blue), #00f0ff);">👥</div>
+            <h3>Gruppi Tematici</h3>
+            <p>Crea o partecipa a community basate sui tuoi interessi e passioni.</p>
+            <ul class="feature-list">
+              <li>Eventi digitali e webinar</li>
+              <li>Condivisione risorse</li>
+              <li>Gestione moderatori</li>
+              <li>Strumenti collaborativi</li>
+            </ul>
+          </div>
 
-          <article class="card-large glow">
-            <div class="card-body">
-              <h3>Chat Private e Sicurezza</h3>
-              <p>Comunicazioni sicure con crittografia end-to-end.</p>
-              <ul class="feature-list">
-                <li>Autodistruzione dei messaggi</li>
-                <li>Verifica dell’identità con doppio fattore</li>
-                <li>Archiviazione sicura e miglior controllo della privacy</li>
-              </ul>
-            </div>
-          </article>
+          <div class="feature-card">
+            <div class="feature-icon" style="background: linear-gradient(135deg, #f59e0b, #ef4444);">👤</div>
+            <h3>Profili Avanzati</h3>
+            <p>Costruisci la tua identità digitale con portfolio e achievements.</p>
+            <ul class="feature-list">
+              <li>Portfolio multimediale</li>
+              <li>Badge e achievements</li>
+              <li>Statistiche personali</li>
+              <li>Privacy configurabile</li>
+            </ul>
+          </div>
 
-          <article class="card-large glow">
-            <div class="card-body">
-              <h3>Gaming Hub</h3>
-              <p>Uno spazio integrato per giocare, socializzare e competere.</p>
-              <ul class="feature-list">
-                <li>Tornei multiplayer in tempo reale</li>
-                <li>Classifiche globali, badge e ricompense</li>
-                <li>Chat vocale durante il gioco</li>
-              </ul>
-            </div>
-          </article>
+          <div class="feature-card">
+            <div class="feature-icon" style="background: linear-gradient(135deg, #10b981, #3b82f6);">📅</div>
+            <h3>Eventi Live</h3>
+            <p>Organizza, partecipa e condividi eventi con la community globale.</p>
+            <ul class="feature-list">
+              <li>Calendario integrato</li>
+              <li>Reminders automatici</li>
+              <li>Prenotazione e pagamento</li>
+              <li>Streaming eventi</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section alt">
-      <div class="section-inner">
-        <h2 class="section-title">Contenuti Multimediali</h2>
-        <div class="cards-grid">
-          <article class="card-large glow">
-            <div class="card-body">
-              <h3>Video Sharing</h3>
-              <p>Piattaforma integrata per la creazione, condivisione e scoperta di video.</p>
-              <ul class="feature-list">
-                <li>Streaming in alta qualità (fino a 4K)</li>
-                <li>Editor video integrato</li>
-                <li>Canali tematici e playlist personalizzate</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="card-large glow">
-            <div class="card-body">
-              <h3>File Sharing</h3>
-              <p>Condivisione sicura e semplice per file di ogni tipo.</p>
-              <ul class="feature-list">
-                <li>Upload fino a 2 GB</li>
-                <li>Anteprima integrata per immagini, documenti e video</li>
-                <li>Cartelle personali e pubbliche</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="card-large glow">
-            <div class="card-body">
-              <h3>Live Streaming</h3>
-              <p>Trasmetti contenuti in diretta e interagisci con la community.</p>
-              <ul class="feature-list">
-                <li>Streaming live Full HD / 4K</li>
-                <li>Chat in tempo reale</li>
-                <li>Moderazione, donazioni e badge spettatori</li>
-              </ul>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-inner">
-        <h2 class="section-title">Funzionalità della Community</h2>
-        <div class="cards-grid">
-          <article class="card-large glow">
-            <div class="card-body">
-              <h3>Gruppi Tematici</h3>
-              <p>Crea o partecipa a community basate sui tuoi interessi.</p>
-              <ul class="feature-list">
-                <li>Eventi digitali e webinar</li>
-                <li>Condivisione di risorse tra membri</li>
-                <li>Sistemi di gestione per moderatori</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="card-large glow">
-            <div class="card-body">
-              <h3>Profili Avanzati</h3>
-              <p>Costruisci la tua identità sul network.</p>
-              <ul class="feature-list">
-                <li>Portfolio multimediale</li>
-                <li>Badge, achievements e statistiche personali</li>
-                <li>Privacy configurabile e visibilità dei contenuti</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="card-large glow">
-            <div class="card-body">
-              <h3>Eventi Live</h3>
-              <p>Organizza, partecipa e condividi eventi con la community.</p>
-              <ul class="feature-list">
-                <li>Calendario integrato</li>
-                <li>Reminders automatici</li>
-                <li>Sistema di prenotazione e pagamento</li>
-              </ul>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="ads-section">
-      <div class="section-inner">
-        <ins class="adsbygoogle"
-             style="display:block; text-align:center;"
-             data-ad-client="ca-pub-4680780116594133"
-             data-ad-slot="1234567893"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
+    <section class="cta-section">
+      <div class="cta-box">
+        <h2>Il Futuro è <span style="background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">DATANET</span></h2>
+        <p>Unisciti alla rivoluzione dell'Internet 2.0. Decentralizzato, intelligente, connesso.</p>
+        <a href="#" class="cta-btn" onclick="alert('Coming Soon! DATANET è in fase di sviluppo.')">Resta Aggiornato →</a>
       </div>
     </section>
   </main>
@@ -181,9 +683,56 @@
     <p>&copy; <span id="year"></span> M.INC. — Marzorati Incorporation</p>
   </footer>
 
-  <script src="../scripts.js"></script>
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      const header = document.getElementById('header');
+      window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 50) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+      }, { passive: true });
+
+      const menuToggle = document.getElementById('menuToggle');
+      const nav = document.getElementById('mainNav');
+      let isMenuOpen = false;
+
+      menuToggle?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        isMenuOpen = !isMenuOpen;
+        if (isMenuOpen) {
+          nav.classList.remove('closing');
+          nav.classList.add('active');
+          menuToggle.textContent = '✕';
+        } else {
+          nav.classList.remove('active');
+          nav.classList.add('closing');
+          menuToggle.textContent = '☰';
+          setTimeout(() => nav.classList.remove('closing'), 300);
+        }
+      });
+
+      document.addEventListener('click', (e) => {
+        if(isMenuOpen && nav && !nav.contains(e.target) && !menuToggle.contains(e.target)) {
+          nav.classList.remove('active');
+          nav.classList.add('closing');
+          menuToggle.textContent = '☰';
+          isMenuOpen = false;
+          setTimeout(() => nav.classList.remove('closing'), 300);
+        }
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      document.querySelectorAll('.feature-card').forEach(el => observer.observe(el));
+    });
   </script>
 </body>
 </html>
