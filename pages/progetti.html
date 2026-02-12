@@ -4,110 +4,718 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Progetti – M.INC.</title>
-  <meta name="description" content="Scopri i progetti open source di M.INC.: ELNS Tokenizer, PicoDAC, microDAC e le nostre ambizioni per il futuro dell’AI." />
-  <link rel="stylesheet" href="../styles.css" />
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4680780116594133" crossorigin="anonymous"></script>
+  <meta name="description" content="Scopri i progetti open source di M.INC.: ELNS Tokenizer, PicoDAC, microDAC e le nostre ambizioni per il futuro dell'AI." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #020408;
+      --bg-secondary: #0a0f1a;
+      --bg-card: rgba(15, 23, 36, 0.7);
+      --text-primary: #ffffff;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --accent-cyan: #00f0ff;
+      --accent-purple: #bd00ff;
+      --accent-blue: #0066ff;
+      --accent-green: #00ff88;
+      --gradient-primary: linear-gradient(135deg, #00f0ff 0%, #0066ff 50%, #bd00ff 100%);
+      --gradient-secondary: linear-gradient(90deg, #00f0ff, #bd00ff);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --shadow-glow: 0 0 40px rgba(0, 240, 255, 0.15);
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      background: 
+        radial-gradient(ellipse at 20% 80%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(0, 102, 255, 0.1) 0%, transparent 50%),
+        var(--bg-primary);
+    }
+
+    .bg-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      z-index: -1;
+      background-image: 
+        linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      transform: perspective(500px) rotateX(60deg) translateY(-100px) translateZ(-200px);
+      animation: gridMove 25s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes gridMove {
+      0% { transform: perspective(500px) rotateX(60deg) translateY(0) translateZ(-200px); }
+      100% { transform: perspective(500px) rotateX(60deg) translateY(60px) translateZ(-200px); }
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1.25rem 4vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(20px);
+      background: rgba(2, 4, 8, 0.8);
+      border-bottom: 1px solid var(--glass-border);
+      transition: all 0.4s var(--ease-out-expo);
+    }
+
+    .site-header.scrolled {
+      padding: 0.75rem 4vw;
+      background: rgba(2, 4, 8, 0.95);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .brand { display: flex; flex-direction: column; gap: 0.25rem; }
+    
+    .brand h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: titleGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes titleGlow {
+      from { filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.3)); }
+      to { filter: drop-shadow(0 0 20px rgba(189, 0, 255, 0.5)); }
+    }
+
+    .brand .tag {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-weight: 500;
+    }
+
+    .nav {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .nav a {
+      position: relative;
+      padding: 0.6rem 1.2rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border-radius: 100px;
+      transition: all 0.3s var(--ease-out-expo);
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .nav a::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gradient-primary);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: inherit;
+    }
+
+    .nav a:hover, .nav a.active { color: var(--text-primary); transform: translateY(-2px); }
+    .nav a:hover::before, .nav a.active::before { opacity: 0.15; }
+    
+    .nav a.active::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20%;
+      height: 2px;
+      background: var(--gradient-secondary);
+      border-radius: 2px;
+      box-shadow: 0 0 10px var(--accent-cyan);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--glass-border);
+      color: var(--text-primary);
+      padding: 0.6rem;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1.25rem;
+      transition: all 0.3s var(--ease-elastic);
+      z-index: 1002;
+    }
+
+    .menu-toggle:hover {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+      transform: scale(1.05);
+    }
+
+    main { margin-top: 80px; }
+
+    .page-header {
+      padding: 6rem 6vw 4rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .page-header h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .page-header h1 span {
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .lead {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .github-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 2rem;
+      padding: 0.8rem 1.5rem;
+      background: rgba(0, 255, 136, 0.1);
+      border: 1px solid rgba(0, 255, 136, 0.2);
+      border-radius: 100px;
+      color: var(--accent-green);
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s var(--ease-out-expo);
+    }
+
+    .github-badge:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 255, 136, 0.2);
+      background: rgba(0, 255, 136, 0.15);
+    }
+
+    .section { padding: 4rem 6vw; position: relative; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-label {
+      display: inline-block;
+      padding: 0.6rem 1.2rem;
+      background: rgba(0, 255, 136, 0.1);
+      border: 1px solid rgba(0, 255, 136, 0.2);
+      border-radius: 100px;
+      color: var(--accent-green);
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-subtitle {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 2.5rem;
+      transition: all 0.5s var(--ease-out-expo);
+      opacity: 0;
+      transform: translateY(30px);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card.in-view {
+      animation: fadeInUp 0.8s var(--ease-out-expo) forwards;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gradient-primary);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s var(--ease-out-expo);
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(0, 255, 136, 0.3);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(0, 255, 136, 0.15);
+    }
+
+    .project-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .project-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--gradient-primary);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      flex-shrink: 0;
+      transition: transform 0.3s var(--ease-elastic);
+    }
+
+    .project-card:hover .project-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .project-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .project-status {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      color: var(--accent-cyan);
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .project-status.beta {
+      background: rgba(255, 193, 7, 0.1);
+      border-color: rgba(255, 193, 7, 0.3);
+      color: #ffc107;
+    }
+
+    .project-card p {
+      color: var(--text-secondary);
+      line-height: 1.7;
+      flex-grow: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .tech-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+
+    .tech-tag {
+      padding: 0.3rem 0.8rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--glass-border);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.5rem;
+      background: rgba(0, 255, 136, 0.1);
+      border: 1px solid rgba(0, 255, 136, 0.2);
+      border-radius: 100px;
+      color: var(--accent-green);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s var(--ease-out-expo);
+      align-self: flex-start;
+    }
+
+    .project-link:hover {
+      background: rgba(0, 255, 136, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0, 255, 136, 0.2);
+    }
+
+    .section-alt {
+      background: linear-gradient(180deg, transparent 0%, rgba(0, 255, 136, 0.03) 50%, transparent 100%);
+    }
+
+    .future-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .future-card {
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.5s var(--ease-out-expo);
+      position: relative;
+    }
+
+    .future-card.in-view {
+      animation: fadeInUp 0.8s var(--ease-out-expo) forwards;
+    }
+
+    .future-card::before {
+      content: 'Coming Soon';
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      padding: 0.3rem 0.8rem;
+      background: rgba(189, 0, 255, 0.1);
+      border: 1px solid rgba(189, 0, 255, 0.2);
+      border-radius: 100px;
+      font-size: 0.7rem;
+      color: var(--accent-purple);
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .future-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(189, 0, 255, 0.3);
+    }
+
+    .future-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1.5rem;
+      background: linear-gradient(135deg, rgba(189, 0, 255, 0.2), rgba(0, 102, 255, 0.2));
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+    }
+
+    .future-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .future-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .site-footer {
+      padding: 4rem 6vw 2rem;
+      border-top: 1px solid var(--glass-border);
+      background: var(--bg-secondary);
+      text-align: center;
+    }
+
+    .site-footer p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-10px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes slideOut {
+      from { opacity: 1; transform: translateY(0) scale(1); }
+      to { opacity: 0; transform: translateY(-10px) scale(0.95); }
+    }
+
+    @media (max-width: 768px) {
+      .nav {
+        display: none;
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        background: rgba(2, 4, 8, 0.98);
+        backdrop-filter: blur(20px);
+        padding: 1.5rem;
+        border-radius: 16px;
+        border: 1px solid var(--glass-border);
+        flex-direction: column;
+        gap: 0.5rem;
+        min-width: 200px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        z-index: 1001;
+      }
+
+      .nav.active { display: flex; animation: slideIn 0.3s var(--ease-out-expo); }
+      .nav.closing { animation: slideOut 0.3s var(--ease-out-expo) forwards; }
+      .nav a { padding: 0.8rem 1.2rem; width: 100%; text-align: center; }
+      .menu-toggle { display: block; }
+      .page-header { padding: 5rem 4vw 3rem; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .project-card { padding: 2rem; }
+      .future-grid { grid-template-columns: 1fr; }
+    }
+
+    ::selection { background: rgba(0, 255, 136, 0.3); color: white; }
+  </style>
 </head>
 <body>
-  <header class="site-header">
+  <div class="bg-canvas"></div>
+  <div class="bg-grid"></div>
+
+  <header class="site-header" id="header">
     <div class="brand">
       <h1>M.INC.</h1>
-      <p class="tag">Marzorati Incorporation — LLM & Edge Computing</p>
+      <p class="tag">Marzorati Incorporation</p>
     </div>
-    <nav class="nav">
+    <nav class="nav" id="mainNav">
       <a href="../index.html">Home</a>
       <a href="dac.html">DAC</a>
       <a href="datanet.html">DATANET</a>
       <a href="progetti.html" class="active">Progetti</a>
       <a href="chi-siamo.html">Chi siamo</a>
-      <a href="privacy.html">Privacy / Termini</a>
     </nav>
-    <button id="menuToggle" class="menu-toggle" aria-label="Apri menu">☰</button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Apri menu">☰</button>
   </header>
 
-  <main class="section">
-    <div class="section-inner">
-      <div class="hero">
-        <h1>I Nostri Progetti</h1>
-        <p class="lead">Ricerca, open source e innovazione per un’AI più democratica.</p>
-      </div>
+  <main>
+    <section class="page-header">
+      <h1>I Nostri <span>Progetti</span></h1>
+      <p class="lead">Ricerca, open source e innovazione per un'AI più democratica e accessibile.</p>
+      <a href="https://github.com/M-INC-01" target="_blank" rel="noopener" class="github-badge">
+        <span>⭐</span> Star su GitHub
+      </a>
+    </section>
 
-      <div class="cards-grid">
-        <div class="card-large glow">
-          <div class="card-body">
-            <h3>ELNS Tokenizer</h3>
-            <p>ELNS (Elaborazione del Linguaggio Naturale Semplice) è il nostro progetto di tokenizer open source progettato per essere altamente efficiente e minimale.</p>
-            <p>È pensato per alimentare applicazioni di AGI leggere o integrate su edge, mantenendo alta qualità di segmentazione e tokenizzazione del testo.</p>
-            <div class="links-row">
-              <a href="https://github.com/M-INC-01/ELNSTokenizer" target="_blank" rel="noopener" class="link">Vai su GitHub →</a>
-            </div>
-          </div>
+    <section class="section">
+      <div class="section-inner">
+        <div class="section-header">
+          <span class="section-label">Open Source</span>
+          <h2 class="section-title">Progetti Attivi</h2>
+          <p class="section-subtitle">Strumenti e modelli liberamente disponibili per la community</p>
         </div>
 
-        <div class="card-large glow">
-          <div class="card-body">
-            <h3>PicoDAC</h3>
-            <p>PicoDAC è dedicato a dispositivi ultra-leggeri e a basso consumo. Sviluppiamo tecniche di quantizzazione estremamente aggressive per mantenere le prestazioni minimizzando l’uso della memoria.</p>
-            <p>Questo progetto è perfetto per applicazioni embedded, IoT o scenari dove il footprint di memoria è critico.</p>
-            <div class="links-row">
-              <a href="https://github.com/M-INC-01/PicoDAC" target="_blank" rel="noopener" class="link">Vai al progetto →</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="card-large glow">
-          <div class="card-body">
-            <h3>microDAC</h3>
-            <p>microDAC è il nostro esperimento su modelli ultra-compatti e performanti per dispositivi mobili o edge con risorse limitate. È pensato per offrire inferenza a bassa latenza e basso consumo.</p>
-            <div class="links-row">
-              <a href="https://github.com/M-INC-01/microDAC" target="_blank" rel="noopener" class="link">Scopri di più →</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <section class="section alt">
-        <h2 class="section-title">Progetti Futuri</h2>
         <div class="cards-grid">
-          <div class="card-large">
-            <div class="card-body">
-              <h3>DAC5</h3>
-              <p>Stiamo esplorando una nuova generazione di modelli DAC che uniscano dimensione, efficienza e potenza. DAC5 sarà un’architettura ibrida ottimizzata per cloud e edge.</p>
+          <div class="project-card">
+            <div class="project-header">
+              <div class="project-icon">🔤</div>
+              <div>
+                <div class="project-title">ELNS Tokenizer</div>
+                <span class="project-status">v1.0 Stable</span>
+              </div>
             </div>
+            <p>Elaborazione del Linguaggio Naturale Semplice. Tokenizer open source altamente efficiente e minimale per applicazioni AGI leggere su edge.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">NLP</span>
+              <span class="tech-tag">Edge</span>
+            </div>
+            <a href="https://github.com/M-INC-01/ELNSTokenizer" target="_blank" rel="noopener" class="project-link">Vedi su GitHub →</a>
           </div>
 
-          <div class="card-large">
-            <div class="card-body">
-              <h3>UltraEdge AI</h3>
-              <p>Una nuova linea di ricerca focalizzata su LLM che possano girare su dispositivi di classe microcontroller, con inferenza quantizzata e ottimizzazione energetica.</p>
+          <div class="project-card">
+            <div class="project-header">
+              <div class="project-icon" style="background: linear-gradient(135deg, var(--accent-cyan), var(--accent-green));">P</div>
+              <div>
+                <div class="project-title">PicoDAC</div>
+                <span class="project-status beta">Beta</span>
+              </div>
             </div>
+            <p>Soluzione nano-scale per l'edge estremo. Latenza ultra-bassa e footprint minimale dove ogni megabyte conta.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">PyTorch</span>
+              <span class="tech-tag">Quantizzazione</span>
+              <span class="tech-tag">IoT</span>
+            </div>
+            <a href="https://github.com/M-INC-01/PicoDAC" target="_blank" rel="noopener" class="project-link">Esplora progetto →</a>
+          </div>
+
+          <div class="project-card">
+            <div class="project-header">
+              <div class="project-icon" style="background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));">μ</div>
+              <div>
+                <div class="project-title">microDAC</div>
+                <span class="project-status beta">Sperimentale</span>
+              </div>
+            </div>
+            <p>Modelli ultra-compatti per dispositivi embedded. Quantizzazione estrema e inference ottimizzata per microcontroller.</p>
+            <div class="tech-tags">
+              <span class="tech-tag">Embedded</span>
+              <span class="tech-tag">C++</span>
+              <span class="tech-tag">TinyML</span>
+            </div>
+            <a href="https://github.com/M-INC-01/microDAC" target="_blank" rel="noopener" class="project-link">Scopri di più →</a>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="ads-section">
-        <div class="section-inner">
-          <ins class="adsbygoogle"
-               style="display:block; text-align:center;"
-               data-ad-client="ca-pub-4680780116594133"
-               data-ad-slot="1234567894"
-               data-ad-format="auto"
-               data-full-width-responsive="true"></ins>
-          <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-          </script>
+    <section class="section section-alt">
+      <div class="section-inner">
+        <div class="section-header">
+          <span class="section-label" style="background: rgba(189, 0, 255, 0.1); border-color: rgba(189, 0, 255, 0.2); color: var(--accent-purple);">Roadmap</span>
+          <h2 class="section-title">Progetti Futuri</h2>
+          <p class="section-subtitle">Cosa stiamo costruendo per il domani</p>
         </div>
-      </section>
-    </div>
+
+        <div class="future-grid">
+          <div class="future-card">
+            <div class="future-icon">🚀</div>
+            <h3>DAC5</h3>
+            <p>Nuova generazione di modelli ibridi ad alta capacità. Architettura ottimizzata per cloud e edge con prestazioni next-gen.</p>
+          </div>
+
+          <div class="future-card">
+            <div class="future-icon">⚡</div>
+            <h3>UltraEdge AI</h3>
+            <p>LLM per microcontroller con inferenza quantizzata e ottimizzazione energetica estrema. AI ovunque, sempre.</p>
+          </div>
+
+          <div class="future-card">
+            <div class="future-icon">🌐</div>
+            <h3>Federated DAC</h3>
+            <p>Apprendimento federato per modelli DAC. Privacy-preserving training distribuito sulla rete DATANET.</p>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
     <p>&copy; <span id="year"></span> M.INC. — Marzorati Incorporation</p>
   </footer>
 
-  <script src="../scripts.js"></script>
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      const header = document.getElementById('header');
+      window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 50) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+      }, { passive: true });
+
+      const menuToggle = document.getElementById('menuToggle');
+      const nav = document.getElementById('mainNav');
+      let isMenuOpen = false;
+
+      menuToggle?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        isMenuOpen = !isMenuOpen;
+        if (isMenuOpen) {
+          nav.classList.remove('closing');
+          nav.classList.add('active');
+          menuToggle.textContent = '✕';
+        } else {
+          nav.classList.remove('active');
+          nav.classList.add('closing');
+          menuToggle.textContent = '☰';
+          setTimeout(() => nav.classList.remove('closing'), 300);
+        }
+      });
+
+      document.addEventListener('click', (e) => {
+        if(isMenuOpen && nav && !nav.contains(e.target) && !menuToggle.contains(e.target)) {
+          nav.classList.remove('active');
+          nav.classList.add('closing');
+          menuToggle.textContent = '☰';
+          isMenuOpen = false;
+          setTimeout(() => nav.classList.remove('closing'), 300);
+        }
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      document.querySelectorAll('.project-card, .future-card').forEach(el => observer.observe(el));
+    });
   </script>
 </body>
 </html>
