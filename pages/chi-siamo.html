@@ -4,116 +4,675 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chi Siamo – M.INC.</title>
-  <meta name="description" content="Scopri la missione, i valori e il team di M.INC., azienda italiana dedicata all’AI, edge computing e modelli linguistici." />
-  <link rel="stylesheet" href="../styles.css" />
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4680780116594133" crossorigin="anonymous"></script>
+  <meta name="description" content="Scopri la missione, i valori e il team di M.INC., azienda italiana dedicata all'AI, edge computing e modelli linguistici." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #020408;
+      --bg-secondary: #0a0f1a;
+      --bg-card: rgba(15, 23, 36, 0.7);
+      --text-primary: #ffffff;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --accent-cyan: #00f0ff;
+      --accent-purple: #bd00ff;
+      --accent-blue: #0066ff;
+      --accent-green: #00ff88;
+      --gradient-primary: linear-gradient(135deg, #00f0ff 0%, #0066ff 50%, #bd00ff 100%);
+      --gradient-secondary: linear-gradient(90deg, #00f0ff, #bd00ff);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --shadow-glow: 0 0 40px rgba(0, 240, 255, 0.15);
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      background: 
+        radial-gradient(ellipse at 20% 80%, rgba(0, 102, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(189, 0, 255, 0.1) 0%, transparent 50%),
+        var(--bg-primary);
+    }
+
+    .bg-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      z-index: -1;
+      background-image: 
+        linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      transform: perspective(500px) rotateX(60deg) translateY(-100px) translateZ(-200px);
+      animation: gridMove 25s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes gridMove {
+      0% { transform: perspective(500px) rotateX(60deg) translateY(0) translateZ(-200px); }
+      100% { transform: perspective(500px) rotateX(60deg) translateY(60px) translateZ(-200px); }
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1.25rem 4vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(20px);
+      background: rgba(2, 4, 8, 0.8);
+      border-bottom: 1px solid var(--glass-border);
+      transition: all 0.4s var(--ease-out-expo);
+    }
+
+    .site-header.scrolled {
+      padding: 0.75rem 4vw;
+      background: rgba(2, 4, 8, 0.95);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .brand { display: flex; flex-direction: column; gap: 0.25rem; }
+    
+    .brand h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: titleGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes titleGlow {
+      from { filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.3)); }
+      to { filter: drop-shadow(0 0 20px rgba(189, 0, 255, 0.5)); }
+    }
+
+    .brand .tag {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-weight: 500;
+    }
+
+    .nav {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .nav a {
+      position: relative;
+      padding: 0.6rem 1.2rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border-radius: 100px;
+      transition: all 0.3s var(--ease-out-expo);
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .nav a::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gradient-primary);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: inherit;
+    }
+
+    .nav a:hover, .nav a.active { color: var(--text-primary); transform: translateY(-2px); }
+    .nav a:hover::before, .nav a.active::before { opacity: 0.15; }
+    
+    .nav a.active::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20%;
+      height: 2px;
+      background: var(--gradient-secondary);
+      border-radius: 2px;
+      box-shadow: 0 0 10px var(--accent-cyan);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--glass-border);
+      color: var(--text-primary);
+      padding: 0.6rem;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1.25rem;
+      transition: all 0.3s var(--ease-elastic);
+      z-index: 1002;
+    }
+
+    .menu-toggle:hover {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+      transform: scale(1.05);
+    }
+
+    main { margin-top: 80px; }
+
+    .page-header {
+      padding: 6rem 6vw 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: var(--gradient-primary);
+      opacity: 0.03;
+      animation: rotate 30s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .page-header h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .page-header h1 span {
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .lead {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section { padding: 4rem 6vw; position: relative; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+
+    .mission-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 32px;
+      padding: 4rem;
+      margin-bottom: 4rem;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .mission-card.in-view {
+      animation: fadeInUp 0.8s var(--ease-out-expo) forwards;
+    }
+
+    .mission-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-primary);
+    }
+
+    .mission-card h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .mission-card h2::before {
+      content: '◆';
+      color: var(--accent-cyan);
+      font-size: 1.5rem;
+    }
+
+    .mission-card p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .value-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 2.5rem;
+      transition: all 0.5s var(--ease-out-expo);
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .value-card.in-view {
+      animation: fadeInUp 0.8s var(--ease-out-expo) forwards;
+    }
+
+    .value-card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(0, 240, 255, 0.3);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), var(--shadow-glow);
+    }
+
+    .value-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--gradient-primary);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      transition: transform 0.3s var(--ease-elastic);
+    }
+
+    .value-card:hover .value-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .value-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .value-card p {
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .team-section {
+      background: linear-gradient(180deg, transparent 0%, rgba(0, 102, 255, 0.03) 50%, transparent 100%);
+      padding: 6rem 6vw;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 3rem auto 0;
+    }
+
+    .team-item {
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s var(--ease-out-expo);
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .team-item.in-view {
+      animation: fadeInUp 0.6s var(--ease-out-expo) forwards;
+    }
+
+    .team-item:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent-cyan);
+    }
+
+    .team-icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(0, 240, 255, 0.1);
+      border: 2px solid var(--glass-border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .team-item:hover .team-icon {
+      background: rgba(0, 240, 255, 0.2);
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+    }
+
+    .team-item h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .team-item p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .contact-section {
+      padding: 6rem 6vw;
+      text-align: center;
+    }
+
+    .social-links-large {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 3rem 0;
+      flex-wrap: wrap;
+    }
+
+    .social-link-large {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.5rem 2.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.4s var(--ease-out-expo);
+      min-width: 200px;
+      justify-content: center;
+    }
+
+    .social-link-large:hover {
+      transform: translateY(-5px) scale(1.05);
+      border-color: var(--accent-cyan);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), var(--shadow-glow);
+    }
+
+    .social-link-large .icon {
+      font-size: 1.5rem;
+    }
+
+    .site-footer {
+      padding: 4rem 6vw 2rem;
+      border-top: 1px solid var(--glass-border);
+      background: var(--bg-secondary);
+      text-align: center;
+    }
+
+    .site-footer p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-10px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes slideOut {
+      from { opacity: 1; transform: translateY(0) scale(1); }
+      to { opacity: 0; transform: translateY(-10px) scale(0.95); }
+    }
+
+    @media (max-width: 768px) {
+      .nav {
+        display: none;
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        background: rgba(2, 4, 8, 0.98);
+        backdrop-filter: blur(20px);
+        padding: 1.5rem;
+        border-radius: 16px;
+        border: 1px solid var(--glass-border);
+        flex-direction: column;
+        gap: 0.5rem;
+        min-width: 200px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        z-index: 1001;
+      }
+
+      .nav.active { display: flex; animation: slideIn 0.3s var(--ease-out-expo); }
+      .nav.closing { animation: slideOut 0.3s var(--ease-out-expo) forwards; }
+      .nav a { padding: 0.8rem 1.2rem; width: 100%; text-align: center; }
+      .menu-toggle { display: block; }
+      .page-header { padding: 5rem 4vw 3rem; }
+      .mission-card { padding: 2rem; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr; }
+      .social-links-large { flex-direction: column; align-items: center; }
+    }
+
+    ::selection { background: rgba(0, 240, 255, 0.3); color: white; }
+  </style>
 </head>
 <body>
-  <header class="site-header">
+  <div class="bg-canvas"></div>
+  <div class="bg-grid"></div>
+
+  <header class="site-header" id="header">
     <div class="brand">
       <h1>M.INC.</h1>
-      <p class="tag">Marzorati Incorporation — LLM & Edge Computing (Italia)</p>
+      <p class="tag">Marzorati Incorporation</p>
     </div>
-    <nav class="nav">
+    <nav class="nav" id="mainNav">
       <a href="../index.html">Home</a>
       <a href="dac.html">DAC</a>
       <a href="datanet.html">DATANET</a>
       <a href="progetti.html">Progetti</a>
       <a href="chi-siamo.html" class="active">Chi siamo</a>
-      <a href="privacy.html">Privacy / Termini</a>
     </nav>
-    <button id="menuToggle" class="menu-toggle" aria-label="Apri menu">☰</button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Apri menu">☰</button>
   </header>
 
-  <main class="section">
-    <div class="section-inner">
-      <div class="hero">
-        <h1>Chi Siamo</h1>
-        <p class="lead">M.INC. - Marzorati Incorporation</p>
-      </div>
+  <main>
+    <section class="page-header">
+      <h1>Chi <span>Siamo</span></h1>
+      <p class="lead">M.INC. - Marzorati Incorporation. Pionieri nell'intelligenza artificiale edge-first made in Italy.</p>
+    </section>
 
-      <section class="about-section">
-        <div class="card-large glow">
-          <div class="card-body">
-            <h3>La Nostra Missione</h3>
-            <p>Fondata in Italia, M.INC. si propone di democratizzare l’intelligenza artificiale avanzata. Il nostro scopo è costruire modelli linguistici efficienti e capaci di girare su dispositivi edge, mantenendo precisione e rilevanza per la lingua italiana.</p>
-            <p>Crediamo nell’innovazione aperta: per questo una parte significativa del nostro lavoro è condivisa in open source, in modo da favorire la ricerca e la comunità globale.</p>
-          </div>
+    <section class="section">
+      <div class="section-inner">
+        <div class="mission-card">
+          <h2>La Nostra Missione</h2>
+          <p>Fondata in Italia, M.INC. si propone di democratizzare l'intelligenza artificiale avanzata. Il nostro scopo è costruire modelli linguistici efficienti e capaci di girare su dispositivi edge, mantenendo precisione e rilevanza per la lingua italiana.</p>
+          <p>Crediamo nell'innovazione aperta: per questo una parte significativa del nostro lavoro è condivisa in open source, in modo da favorire la ricerca e la comunità globale.</p>
         </div>
 
         <div class="cards-grid">
-          <div class="card-large">
-            <div class="card-body">
-              <h3>Innovazione</h3>
-              <p>Siamo pionieri nell’AI in Italia: sviluppiamo modelli all’avanguardia che combinano potenza e efficienza, pensati per l’edge computing.</p>
-              <p>Il nostro team è composto da ricercatori, ingegneri software e appassionati di tecnologia, tutti uniti dalla visione di un’AI decentralizzata e sostenibile.</p>
-            </div>
+          <div class="value-card">
+            <div class="value-icon">💡</div>
+            <h3>Innovazione</h3>
+            <p>Siamo pionieri nell'AI in Italia: sviluppiamo modelli all'avanguardia che combinano potenza e efficienza, pensati per l'edge computing.</p>
           </div>
-
-          <div class="card-large">
-            <div class="card-body">
-              <h3>Ricerca</h3>
-              <p>La ricerca è al centro della nostra identità. Collaboriamo con università e centri di ricerca per migliorare le tecniche di compressione modelli, quantizzazione, e inferenza locale.</p>
-              <p>Ogni modello nasce da cicli di sperimentazione rigorosi, test sul campo e feedback attivi da parte della community.</p>
-            </div>
+          <div class="value-card">
+            <div class="value-icon">🔬</div>
+            <h3>Ricerca</h3>
+            <p>La ricerca è al centro della nostra identità. Collaboriamo con università e centri di ricerca per migliorare le tecniche di compressione modelli e quantizzazione.</p>
           </div>
-
-          <div class="card-large">
-            <div class="card-body">
-              <h3>Comunità</h3>
-              <p>Sosteniamo la cultura open source: tutti i nostri progetti, dai modelli ai dataset, sono liberamente accessibili.</p>
-              <p>Inoltre, organizziamo workshop, hackathon e collaborazioni con sviluppatori, ricercatori e aziende per costruire un ecosistema di AI condivisa.</p>
-            </div>
+          <div class="value-card">
+            <div class="value-icon">🌐</div>
+            <h3>Comunità</h3>
+            <p>Sosteniamo la cultura open source: tutti i nostri progetti sono liberamente accessibili. Organizziamo workshop e hackathon per costruire un ecosistema di AI condivisa.</p>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="section alt">
-        <h2 class="section-title">Il Nostro Team</h2>
-        <p>Il team di M.INC. è composto da professionisti con competenze in:</p>
-        <ul>
-          <li>Machine Learning e NLP</li>
-          <li>Edge Computing e Sistemi Embedded</li>
-          <li>Infrastrutture cloud ibride</li>
-          <li>Ricerca open source e comunità</li>
-        </ul>
-        <p>Crediamo nella responsabilità etica: ogni decisione tecnica è guidata da un approccio trasparente e attento alle implicazioni sociali dell’AI.</p>
-      </section>
-
-      <section class="ads-section">
-        <div class="section-inner">
-          <ins class="adsbygoogle"
-               style="display:block; text-align:center;"
-               data-ad-client="ca-pub-4680780116594133"
-               data-ad-slot="1234567891"
-               data-ad-format="auto"
-               data-full-width-responsive="true"></ins>
-          <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-          </script>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-inner">
-          <h2 class="section-title">I Nostri Canali</h2>
-          <div class="social-links">
-            <a href="https://huggingface.co/Mattimax" class="social-link" target="_blank" rel="noopener">Hugging Face</a>
-            <a href="https://github.com/M-INC-01" class="social-link" target="_blank" rel="noopener">GitHub</a>
+    <section class="team-section">
+      <div class="section-inner">
+        <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; text-align: center; margin-bottom: 1rem;">Il Nostro Team</h2>
+        <p style="color: var(--text-secondary); text-align: center; max-width: 600px; margin: 0 auto 2rem;">Professionisti con competenze diverse unite dalla passione per l'AI</p>
+        
+        <div class="team-grid">
+          <div class="team-item">
+            <div class="team-icon">🧠</div>
+            <h4>Machine Learning</h4>
+            <p>NLP & Deep Learning</p>
           </div>
-          <p>Per domande, collaborazioni o contributi open source, contattaci tramite GitHub o via email (inserisci il contatto email qui)</p>
+          <div class="team-item">
+            <div class="team-icon">⚡</div>
+            <h4>Edge Computing</h4>
+            <p>Sistemi Embedded</p>
+          </div>
+          <div class="team-item">
+            <div class="team-icon">☁️</div>
+            <h4>Cloud Infrastructure</h4>
+            <p>Architetture ibride</p>
+          </div>
+          <div class="team-item">
+            <div class="team-icon">🤝</div>
+            <h4>Open Source</h4>
+            <p>Community & Research</p>
+          </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
+
+    <section class="contact-section">
+      <div class="section-inner">
+        <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 2rem; margin-bottom: 1rem;">Resta Connesso</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 2rem;">Seguici sui nostri canali ufficiali</p>
+        
+        <div class="social-links-large">
+          <a href="https://huggingface.co/Mattimax" target="_blank" rel="noopener" class="social-link-large">
+            <span class="icon">🤗</span>
+            <span>Hugging Face</span>
+          </a>
+          <a href="https://github.com/M-INC-01" target="_blank" rel="noopener" class="social-link-large">
+            <span class="icon">⚡</span>
+            <span>GitHub</span>
+          </a>
+        </div>
+
+        <p style="color: var(--text-muted); font-size: 0.9rem; max-width: 500px; margin: 2rem auto 0;">
+          Per domande, collaborazioni o contributi open source, contattaci tramite GitHub o via email.
+        </p>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
     <p>&copy; <span id="year"></span> M.INC. — Marzorati Incorporation</p>
   </footer>
 
-  <script src="../scripts.js"></script>
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.addEventListener('DOMContentLoaded', () => {
+      // Anno
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Header scroll
+      const header = document.getElementById('header');
+      window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 50) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+      }, { passive: true });
+
+      // Menu mobile
+      const menuToggle = document.getElementById('menuToggle');
+      const nav = document.getElementById('mainNav');
+      let isMenuOpen = false;
+
+      menuToggle?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        isMenuOpen = !isMenuOpen;
+        if (isMenuOpen) {
+          nav.classList.remove('closing');
+          nav.classList.add('active');
+          menuToggle.textContent = '✕';
+        } else {
+          nav.classList.remove('active');
+          nav.classList.add('closing');
+          menuToggle.textContent = '☰';
+          setTimeout(() => nav.classList.remove('closing'), 300);
+        }
+      });
+
+      document.addEventListener('click', (e) => {
+        if(isMenuOpen && nav && !nav.contains(e.target) && !menuToggle.contains(e.target)) {
+          nav.classList.remove('active');
+          nav.classList.add('closing');
+          menuToggle.textContent = '☰';
+          isMenuOpen = false;
+          setTimeout(() => nav.classList.remove('closing'), 300);
+        }
+      });
+
+      // Reveal animations
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      document.querySelectorAll('.mission-card, .value-card, .team-item').forEach(el => observer.observe(el));
+    });
   </script>
 </body>
 </html>
