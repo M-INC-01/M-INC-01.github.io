@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>M.INC. – Innovazione AI & Edge Computing</title>
-  <meta name="description" content="M.INC. – Tecnologie LLM edge-first, serie DAC, DACMini e soluzioni DATA-AI per l'innovazione italiana nell'intelligenza artificiale." />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chi Siamo – M.INC.</title>
+  <meta name="description" content="Scopri la missione, i valori e il team di M.INC., azienda italiana dedicata all'AI, edge computing e modelli linguistici." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -23,23 +23,14 @@
       --gradient-primary: linear-gradient(135deg, #00f0ff 0%, #0066ff 50%, #bd00ff 100%);
       --gradient-secondary: linear-gradient(90deg, #00f0ff, #bd00ff);
       --glass-border: rgba(255, 255, 255, 0.08);
-      --glass-highlight: rgba(255, 255, 255, 0.05);
       --shadow-glow: 0 0 40px rgba(0, 240, 255, 0.15);
       --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
       --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    
     body {
       font-family: 'Inter', system-ui, sans-serif;
       background: var(--bg-primary);
@@ -47,10 +38,8 @@
       line-height: 1.6;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
-      cursor: default;
     }
 
-    /* Animated Background */
     .bg-canvas {
       position: fixed;
       top: 0;
@@ -61,9 +50,7 @@
       background: 
         radial-gradient(ellipse at 20% 80%, rgba(0, 102, 255, 0.15) 0%, transparent 50%),
         radial-gradient(ellipse at 80% 20%, rgba(189, 0, 255, 0.1) 0%, transparent 50%),
-        radial-gradient(ellipse at 40% 40%, rgba(0, 240, 255, 0.05) 0%, transparent 40%),
         var(--bg-primary);
-      transition: transform 0.3s ease-out;
     }
 
     .bg-grid {
@@ -87,48 +74,6 @@
       100% { transform: perspective(500px) rotateX(60deg) translateY(60px) translateZ(-200px); }
     }
 
-    /* Particles */
-    .particles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: -1;
-      overflow: hidden;
-    }
-
-    .particle {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background: var(--accent-cyan);
-      border-radius: 50%;
-      opacity: 0;
-      animation: particleFloat 15s infinite;
-      box-shadow: 0 0 6px var(--accent-cyan);
-    }
-
-    @keyframes particleFloat {
-      0% {
-        transform: translateY(100vh) translateX(0) scale(0);
-        opacity: 0;
-      }
-      10% {
-        opacity: 0.6;
-        transform: scale(1);
-      }
-      90% {
-        opacity: 0.6;
-      }
-      100% {
-        transform: translateY(-100vh) translateX(100px) scale(0.5);
-        opacity: 0;
-      }
-    }
-
-    /* Header */
     .site-header {
       position: fixed;
       top: 0;
@@ -151,13 +96,8 @@
       box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
     }
 
-    .brand {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-      position: relative;
-    }
-
+    .brand { display: flex; flex-direction: column; gap: 0.25rem; }
+    
     .brand h1 {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 1.75rem;
@@ -167,7 +107,6 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      position: relative;
       animation: titleGlow 3s ease-in-out infinite alternate;
     }
 
@@ -188,7 +127,6 @@
       display: flex;
       gap: 0.5rem;
       align-items: center;
-      transition: all 0.3s var(--ease-out-expo);
     }
 
     .nav a {
@@ -214,15 +152,9 @@
       border-radius: inherit;
     }
 
-    .nav a:hover, .nav a.active {
-      color: var(--text-primary);
-      transform: translateY(-2px);
-    }
-
-    .nav a:hover::before, .nav a.active::before {
-      opacity: 0.15;
-    }
-
+    .nav a:hover, .nav a.active { color: var(--text-primary); transform: translateY(-2px); }
+    .nav a:hover::before, .nav a.active::before { opacity: 0.15; }
+    
     .nav a.active::after {
       content: '';
       position: absolute;
@@ -255,715 +187,294 @@
       transform: scale(1.05);
     }
 
-    .menu-toggle:active {
-      transform: scale(0.95);
-    }
+    main { margin-top: 80px; }
 
-    /* Main Content */
-    main {
-      margin-top: 80px;
-    }
-
-    /* Hero Section */
-    .hero {
-      min-height: calc(100vh - 80px);
-      display: flex;
-      align-items: center;
-      padding: 4rem 6vw;
+    .page-header {
+      padding: 6rem 6vw 4rem;
+      text-align: center;
       position: relative;
       overflow: hidden;
     }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 4rem;
-      max-width: 1400px;
-      margin: 0 auto;
-      width: 100%;
-      align-items: center;
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: var(--gradient-primary);
+      opacity: 0.03;
+      animation: rotate 30s linear infinite;
+      pointer-events: none;
     }
 
-    .hero-text {
-      opacity: 0;
-      animation: fadeInUp 1s var(--ease-out-expo) 0.2s forwards;
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
 
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.6rem 1.2rem;
-      background: rgba(0, 240, 255, 0.1);
-      border: 1px solid rgba(0, 240, 255, 0.2);
-      border-radius: 100px;
-      font-size: 0.8rem;
-      color: var(--accent-cyan);
-      margin-bottom: 1.5rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      animation: pulse 2s infinite, fadeInUp 0.8s var(--ease-out-expo) 0.4s both;
-    }
-
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.4); }
-      50% { box-shadow: 0 0 0 10px rgba(0, 240, 255, 0); }
-    }
-
-    .hero-text h2 {
+    .page-header h1 {
       font-family: 'Space Grotesk', sans-serif;
       font-size: clamp(2.5rem, 5vw, 4rem);
       font-weight: 700;
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
-      letter-spacing: -0.02em;
-    }
-
-    .hero-text h2 span {
-      background: var(--gradient-primary);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      margin-bottom: 1rem;
       position: relative;
-    }
-
-    .hero-text p {
-      font-size: 1.25rem;
-      color: var(--text-secondary);
-      max-width: 540px;
-      margin-bottom: 2.5rem;
-      line-height: 1.7;
-    }
-
-    .cta-group {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 3rem;
-    }
-
-    .cta {
-      position: relative;
-      padding: 1rem 2rem;
-      background: var(--gradient-primary);
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      border-radius: 100px;
-      overflow: hidden;
-      transition: all 0.4s var(--ease-out-expo);
-      box-shadow: 0 4px 20px rgba(0, 102, 255, 0.3);
-      border: none;
-      cursor: pointer;
-      font-size: 1rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
       z-index: 1;
     }
 
-    .cta::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-      transition: left 0.6s;
-      z-index: -1;
-    }
-
-    .cta:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 10px 40px rgba(0, 240, 255, 0.4);
-    }
-
-    .cta:hover::before {
-      left: 100%;
-    }
-
-    .cta.ghost {
-      background: transparent;
-      border: 1px solid var(--glass-border);
-      color: var(--text-primary);
-      box-shadow: none;
-    }
-
-    .cta.ghost:hover {
-      border-color: var(--accent-cyan);
-      background: rgba(0, 240, 255, 0.05);
-      box-shadow: 0 0 30px rgba(0, 240, 255, 0.15);
-    }
-
-    /* Stats Bar */
-    .stats-bar {
-      display: flex;
-      gap: 3rem;
-      flex-wrap: wrap;
-    }
-
-    .stat-item {
-      position: relative;
-      padding: 1rem;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--glass-border);
-      border-radius: 16px;
-      min-width: 120px;
-      text-align: center;
-      transition: all 0.3s var(--ease-out-expo);
-    }
-
-    .stat-item:hover {
-      transform: translateY(-5px);
-      border-color: rgba(0, 240, 255, 0.3);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
-
-    .stat-value {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 2.5rem;
-      font-weight: 700;
+    .page-header h1 span {
       background: var(--gradient-primary);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      line-height: 1;
-      display: block;
     }
 
-    .stat-label {
-      color: var(--text-muted);
-      font-size: 0.75rem;
-      margin-top: 0.5rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-weight: 500;
-    }
-
-    /* Hero Cards */
-    .hero-visual {
+    .lead {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
       position: relative;
-      opacity: 0;
-      animation: fadeInUp 1s var(--ease-out-expo) 0.4s forwards;
+      z-index: 1;
     }
 
-    .hero-cards {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      position: relative;
-    }
+    .section { padding: 4rem 6vw; position: relative; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
 
-    .card-featured {
-      position: relative;
+    .mission-card {
       background: var(--bg-card);
       backdrop-filter: blur(20px);
       border: 1px solid var(--glass-border);
-      border-radius: 24px;
-      padding: 2rem;
-      overflow: hidden;
-      transition: all 0.4s var(--ease-out-expo);
-      cursor: pointer;
-      text-decoration: none;
-      color: inherit;
-      display: block;
-      transform-style: preserve-3d;
-    }
-
-    .card-featured::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: var(--gradient-primary);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-
-    .card-featured::after {
-      content: '';
-      position: absolute;
-      inset: 1px;
-      background: var(--bg-card);
-      border-radius: 23px;
-      z-index: 1;
-    }
-
-    .card-featured:hover {
-      transform: translateY(-8px) scale(1.02);
-      border-color: rgba(0, 240, 255, 0.4);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), var(--shadow-glow);
-    }
-
-    .card-featured:hover::before {
-      opacity: 0.15;
-    }
-
-    .card-content {
-      position: relative;
-      z-index: 2;
-    }
-
-    .card-icon {
-      width: 64px;
-      height: 64px;
-      margin-bottom: 1.5rem;
-      position: relative;
-      border-radius: 16px;
-      overflow: hidden;
-    }
-
-    .card-icon img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      filter: drop-shadow(0 0 20px rgba(0, 240, 255, 0.3));
-      transition: transform 0.3s var(--ease-out-expo);
-    }
-
-    .card-featured:hover .card-icon img {
-      transform: scale(1.1) rotate(5deg);
-    }
-
-    .card-featured h3 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-    }
-
-    .card-featured p {
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-
-    .card-arrow {
-      position: absolute;
-      top: 2rem;
-      right: 2rem;
-      width: 44px;
-      height: 44px;
-      border: 1px solid var(--glass-border);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s var(--ease-elastic);
-      z-index: 2;
-      font-size: 1.2rem;
-    }
-
-    .card-featured:hover .card-arrow {
-      background: var(--accent-cyan);
-      border-color: var(--accent-cyan);
-      transform: rotate(45deg) scale(1.1);
-      box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
-    }
-
-    /* Floating animation */
-    .floating {
-      animation: float 6s ease-in-out infinite;
-    }
-
-    .floating:nth-child(2) {
-      animation-delay: -3s;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-15px); }
-    }
-
-    /* Sections */
-    .section {
-      padding: 8rem 6vw;
-      position: relative;
-    }
-
-    .section-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .section-header {
-      text-align: center;
+      border-radius: 32px;
+      padding: 4rem;
       margin-bottom: 4rem;
+      position: relative;
+      overflow: hidden;
       opacity: 0;
       transform: translateY(30px);
     }
 
-    .section-header.in-view {
+    .mission-card.in-view {
       animation: fadeInUp 0.8s var(--ease-out-expo) forwards;
     }
 
-    .section-label {
-      display: inline-block;
-      padding: 0.6rem 1.2rem;
-      background: rgba(0, 240, 255, 0.1);
-      border: 1px solid rgba(0, 240, 255, 0.2);
-      border-radius: 100px;
-      color: var(--accent-cyan);
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 1rem;
+    .mission-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-primary);
     }
 
-    .section-title {
+    .mission-card h2 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 700;
-      margin-bottom: 1rem;
-      letter-spacing: -0.02em;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
     }
 
-    .section-subtitle {
+    .mission-card h2::before {
+      content: '◆';
+      color: var(--accent-cyan);
+      font-size: 1.5rem;
+    }
+
+    .mission-card p {
       color: var(--text-secondary);
-      font-size: 1.125rem;
-      max-width: 600px;
-      margin: 0 auto;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
     }
 
-    /* Cards Grid */
     .cards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 2rem;
+      margin-bottom: 4rem;
     }
 
-    .card-large {
-      position: relative;
+    .value-card {
       background: var(--bg-card);
       backdrop-filter: blur(20px);
       border: 1px solid var(--glass-border);
       border-radius: 24px;
       padding: 2.5rem;
-      overflow: hidden;
       transition: all 0.5s var(--ease-out-expo);
-      display: flex;
-      flex-direction: column;
-      height: 100%;
       opacity: 0;
       transform: translateY(30px);
     }
 
-    .card-large.in-view {
+    .value-card.in-view {
       animation: fadeInUp 0.8s var(--ease-out-expo) forwards;
     }
 
-    .card-large::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: var(--gradient-primary);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.5s var(--ease-out-expo);
-    }
-
-    .card-large:hover {
-      transform: translateY(-10px) scale(1.02);
+    .value-card:hover {
+      transform: translateY(-10px);
       border-color: rgba(0, 240, 255, 0.3);
       box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), var(--shadow-glow);
     }
 
-    .card-large:hover::before {
-      transform: scaleX(1);
-    }
-
-    .card-large h3 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      font-weight: 600;
-    }
-
-    .card-large p {
-      color: var(--text-secondary);
-      line-height: 1.7;
-      flex-grow: 1;
-      margin-bottom: 1.5rem;
-    }
-
-    .tag-group {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-      margin-bottom: 1.5rem;
-    }
-
-    .tag {
-      padding: 0.4rem 0.9rem;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--glass-border);
-      border-radius: 100px;
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      transition: all 0.3s ease;
-    }
-
-    .card-large:hover .tag {
-      background: rgba(0, 240, 255, 0.1);
-      border-color: rgba(0, 240, 255, 0.2);
-      color: var(--accent-cyan);
-    }
-
-    .link-arrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--accent-cyan);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: all 0.3s var(--ease-out-expo);
-      position: relative;
-      align-self: flex-start;
-    }
-
-    .link-arrow::after {
-      content: '→';
-      transition: transform 0.3s var(--ease-out-expo);
-    }
-
-    .link-arrow:hover {
-      gap: 1rem;
-      color: var(--text-primary);
-      text-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
-    }
-
-    .link-arrow:hover::after {
-      transform: translateX(5px);
-    }
-
-    /* Alternate Section */
-    .section-alt {
-      background: linear-gradient(180deg, transparent 0%, rgba(0, 102, 255, 0.03) 50%, transparent 100%);
-      position: relative;
-    }
-
-    .section-alt::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
-    }
-
-    /* Footer */
-    .site-footer {
-      padding: 5rem 6vw 2rem;
-      border-top: 1px solid var(--glass-border);
-      background: var(--bg-secondary);
-      position: relative;
-    }
-
-    .footer-grid {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 4rem;
-      margin-bottom: 4rem;
-    }
-
-    .footer-brand h2 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
+    .value-icon {
+      width: 60px;
+      height: 60px;
       background: var(--gradient-primary);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .footer-brand p {
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      line-height: 1.7;
-      max-width: 300px;
-    }
-
-    .footer-links h4 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 1.5rem;
-      color: var(--text-primary);
-      font-weight: 600;
-    }
-
-    .footer-links ul {
-      list-style: none;
-    }
-
-    .footer-links li {
-      margin-bottom: 0.75rem;
-    }
-
-    .footer-links a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: all 0.3s var(--ease-out-expo);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      position: relative;
-    }
-
-    .footer-links a::before {
-      content: '›';
-      opacity: 0;
-      transform: translateX(-10px);
-      transition: all 0.3s ease;
-      color: var(--accent-cyan);
-    }
-
-    .footer-links a:hover {
-      color: var(--accent-cyan);
-      transform: translateX(5px);
-    }
-
-    .footer-links a:hover::before {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    .footer-bottom {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding-top: 2rem;
-      border-top: 1px solid var(--glass-border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      color: var(--text-muted);
-      font-size: 0.875rem;
-    }
-
-    .social-links {
-      display: flex;
-      gap: 1rem;
-    }
-
-    .social-links a {
-      width: 44px;
-      height: 44px;
-      border: 1px solid var(--glass-border);
-      border-radius: 12px;
+      border-radius: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      transition: transform 0.3s var(--ease-elastic);
+    }
+
+    .value-card:hover .value-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .value-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .value-card p {
       color: var(--text-secondary);
-      text-decoration: none;
-      transition: all 0.3s var(--ease-elastic);
-      font-size: 1.2rem;
-      background: rgba(255, 255, 255, 0.02);
+      line-height: 1.7;
     }
 
-    .social-links a:hover {
+    .team-section {
+      background: linear-gradient(180deg, transparent 0%, rgba(0, 102, 255, 0.03) 50%, transparent 100%);
+      padding: 6rem 6vw;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 3rem auto 0;
+    }
+
+    .team-item {
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s var(--ease-out-expo);
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .team-item.in-view {
+      animation: fadeInUp 0.6s var(--ease-out-expo) forwards;
+    }
+
+    .team-item:hover {
+      transform: translateY(-5px);
       border-color: var(--accent-cyan);
-      color: var(--accent-cyan);
-      transform: translateY(-5px) scale(1.1);
-      box-shadow: 0 10px 30px rgba(0, 240, 255, 0.2);
-      background: rgba(0, 240, 255, 0.05);
     }
 
-    /* Animations */
+    .team-icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(0, 240, 255, 0.1);
+      border: 2px solid var(--glass-border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .team-item:hover .team-icon {
+      background: rgba(0, 240, 255, 0.2);
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+    }
+
+    .team-item h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .team-item p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .contact-section {
+      padding: 6rem 6vw;
+      text-align: center;
+    }
+
+    .social-links-large {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 3rem 0;
+      flex-wrap: wrap;
+    }
+
+    .social-link-large {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.5rem 2.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.4s var(--ease-out-expo);
+      min-width: 200px;
+      justify-content: center;
+    }
+
+    .social-link-large:hover {
+      transform: translateY(-5px) scale(1.05);
+      border-color: var(--accent-cyan);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), var(--shadow-glow);
+    }
+
+    .social-link-large .icon {
+      font-size: 1.5rem;
+    }
+
+    .site-footer {
+      padding: 4rem 6vw 2rem;
+      border-top: 1px solid var(--glass-border);
+      background: var(--bg-secondary);
+      text-align: center;
+    }
+
+    .site-footer p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
     @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateY(-10px) scale(0.95);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
+      from { opacity: 0; transform: translateY(-10px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     @keyframes slideOut {
-      from {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-      to {
-        opacity: 0;
-        transform: translateY(-10px) scale(0.95);
-      }
-    }
-
-    /* Glow effect for cards */
-    .glow {
-      position: relative;
-    }
-
-    .glow::after {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      background: var(--gradient-primary);
-      border-radius: inherit;
-      opacity: 0;
-      z-index: -1;
-      filter: blur(20px);
-      transition: opacity 0.3s ease;
-    }
-
-    .glow:hover::after {
-      opacity: 0.4;
-    }
-
-    /* Responsive */
-    @media (max-width: 1024px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 3rem;
-      }
-
-      .hero-text p {
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .cta-group {
-        justify-content: center;
-      }
-
-      .stats-bar {
-        justify-content: center;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 3rem;
-      }
+      from { opacity: 1; transform: translateY(0) scale(1); }
+      to { opacity: 0; transform: translateY(-10px) scale(0.95); }
     }
 
     @media (max-width: 768px) {
@@ -984,125 +495,23 @@
         z-index: 1001;
       }
 
-      .nav.active {
-        display: flex;
-        animation: slideIn 0.3s var(--ease-out-expo);
-      }
-
-      .nav.closing {
-        animation: slideOut 0.3s var(--ease-out-expo) forwards;
-      }
-
-      .nav a {
-        padding: 0.8rem 1.2rem;
-        width: 100%;
-        text-align: center;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-
-      .hero {
-        padding: 2rem 4vw;
-        min-height: auto;
-        padding-top: 6rem;
-      }
-
-      .section {
-        padding: 5rem 4vw;
-      }
-
-      .cards-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-
-      .card-large {
-        padding: 2rem;
-      }
-
-      .stats-bar {
-        gap: 1rem;
-      }
-
-      .stat-item {
-        min-width: 100px;
-        padding: 0.8rem;
-      }
-
-      .stat-value {
-        font-size: 2rem;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 2.5rem;
-      }
-
-      .footer-brand p {
-        margin: 0 auto;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
-        text-align: center;
-        gap: 1.5rem;
-      }
-
-      .social-links {
-        justify-content: center;
-      }
+      .nav.active { display: flex; animation: slideIn 0.3s var(--ease-out-expo); }
+      .nav.closing { animation: slideOut 0.3s var(--ease-out-expo) forwards; }
+      .nav a { padding: 0.8rem 1.2rem; width: 100%; text-align: center; }
+      .menu-toggle { display: block; }
+      .page-header { padding: 5rem 4vw 3rem; }
+      .mission-card { padding: 2rem; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr; }
+      .social-links-large { flex-direction: column; align-items: center; }
     }
 
-    @media (max-width: 480px) {
-      .hero-text h2 {
-        font-size: 2rem;
-      }
-
-      .cta-group {
-        flex-direction: column;
-        width: 100%;
-      }
-
-      .cta {
-        width: 100%;
-        justify-content: center;
-      }
-
-      .card-featured {
-        padding: 1.5rem;
-      }
-
-      .card-arrow {
-        top: 1.5rem;
-        right: 1.5rem;
-        width: 36px;
-        height: 36px;
-      }
-    }
-
-    /* Reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-
-    /* Selection color */
-    ::selection {
-      background: rgba(0, 240, 255, 0.3);
-      color: white;
-    }
+    ::selection { background: rgba(0, 240, 255, 0.3); color: white; }
   </style>
 </head>
 <body>
-  <div class="bg-canvas" id="bgCanvas"></div>
+  <div class="bg-canvas"></div>
   <div class="bg-grid"></div>
-  <div class="particles" id="particles"></div>
 
   <header class="site-header" id="header">
     <div class="brand">
@@ -1110,217 +519,116 @@
       <p class="tag">Marzorati Incorporation</p>
     </div>
     <nav class="nav" id="mainNav">
-      <a href="index.html" class="active">Home</a>
-      <a href="pages/dac.html">DAC</a>
-      <a href="pages/datanet.html">DATANET</a>
-      <a href="pages/progetti.html">Progetti</a>
-      <a href="pages/chi-siamo.html">Chi siamo</a>
+      <a href="../index.html">Home</a>
+      <a href="dac.html">DAC</a>
+      <a href="datanet.html">DATANET</a>
+      <a href="progetti.html">Progetti</a>
+      <a href="chi-siamo.html" class="active">Chi siamo</a>
     </nav>
     <button class="menu-toggle" id="menuToggle" aria-label="Apri menu">☰</button>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="hero-grid">
-        <div class="hero-text">
-          <div class="hero-badge">
-            <span>●</span> Innovazione Italiana
-          </div>
-          <h2>L'Intelligenza Artificiale <span>nel tuo dispositivo</span></h2>
-          <p>Sviluppiamo Large Language Models all'avanguardia ottimizzati per l'italiano e l'edge computing. Tecnologia autonoma, privata e performante.</p>
-          <div class="cta-group">
-            <a href="pages/dac.html" class="cta">Esplora i DAC</a>
-            <a href="pages/progetti.html" class="cta ghost">Vedi i Progetti</a>
-          </div>
-          
-          <div class="stats-bar">
-            <div class="stat-item">
-              <span class="stat-value">1B</span>
-              <div class="stat-label">Parametri</div>
-            </div>
-            <div class="stat-item">
-              <span class="stat-value">109M</span>
-              <div class="stat-label">Mini Model</div>
-            </div>
-            <div class="stat-item">
-              <span class="stat-value">100%</span>
-              <div class="stat-label">Open Source</div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="hero-visual">
-          <div class="hero-cards">
-            <a href="pages/dac.html" class="card-featured floating glow">
-              <div class="card-arrow">→</div>
-              <div class="card-content">
-                <div class="card-icon">
-                  <img src="https://huggingface.co/Mattimax/DAC4.3/resolve/main/DAC_Logo.png" alt="DAC Logo">
-                </div>
-                <h3>Serie DAC</h3>
-                <p>Modelli LLM ottimizzati per l'italiano e l'edge computing con prestazioni superiori.</p>
-              </div>
-            </a>
-            
-            <a href="pages/datanet.html" class="card-featured floating glow" style="animation-delay: -3s;">
-              <div class="card-arrow">→</div>
-              <div class="card-content">
-                <div class="card-icon" style="background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue)); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; font-family: 'Space Grotesk';">
-                  D
-                </div>
-                <h3>DATANET</h3>
-                <p>La nostra visione per l'Internet del futuro: decentralizzato, intelligente, connesso.</p>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
+    <section class="page-header">
+      <h1>Chi <span>Siamo</span></h1>
+      <p class="lead">M.INC. - Marzorati Incorporation. Pionieri nell'intelligenza artificiale edge-first made in Italy.</p>
     </section>
 
     <section class="section">
       <div class="section-inner">
-        <div class="section-header">
-          <span class="section-label">Tecnologie</span>
-          <h2 class="section-title">La Nostra Suite AI</h2>
-          <p class="section-subtitle">Soluzioni complete per l'intelligenza artificiale locale e distribuita</p>
+        <div class="mission-card">
+          <h2>La Nostra Missione</h2>
+          <p>Fondata in Italia, M.INC. si propone di democratizzare l'intelligenza artificiale avanzata. Il nostro scopo è costruire modelli linguistici efficienti e capaci di girare su dispositivi edge, mantenendo precisione e rilevanza per la lingua italiana.</p>
+          <p>Crediamo nell'innovazione aperta: per questo una parte significativa del nostro lavoro è condivisa in open source, in modo da favorire la ricerca e la comunità globale.</p>
         </div>
-        
+
         <div class="cards-grid">
-          <div class="card-large glow">
-            <div class="tag-group">
-              <span class="tag">LLM</span>
-              <span class="tag">Edge</span>
-              <span class="tag">Italiano</span>
-            </div>
-            <h3>Serie DAC</h3>
-            <p>Una famiglia di modelli linguistici da ~0.5B a ~1B parametri, progettati per efficienza ed elaborazione in locale. Ottimizzati per il linguaggio naturale italiano.</p>
-            <a href="pages/dac.html" class="link-arrow">Scopri di più</a>
+          <div class="value-card">
+            <div class="value-icon">💡</div>
+            <h3>Innovazione</h3>
+            <p>Siamo pionieri nell'AI in Italia: sviluppiamo modelli all'avanguardia che combinano potenza e efficienza, pensati per l'edge computing.</p>
           </div>
-          
-          <div class="card-large glow">
-            <div class="tag-group">
-              <span class="tag">Ultra-Light</span>
-              <span class="tag">109M</span>
-              <span class="tag">Mobile</span>
-            </div>
-            <h3>DACMini</h3>
-            <p>Il più piccolo LLM al mondo capace di dialogare in italiano con soli ~109M parametri. Perfetto per dispositivi mobile e IoT.</p>
-            <a href="https://huggingface.co/Mattimax/DACMini-IT" target="_blank" rel="noopener" class="link-arrow">Vai a Hugging Face</a>
+          <div class="value-card">
+            <div class="value-icon">🔬</div>
+            <h3>Ricerca</h3>
+            <p>La ricerca è al centro della nostra identità. Collaboriamo con università e centri di ricerca per migliorare le tecniche di compressione modelli e quantizzazione.</p>
           </div>
-          
-          <div class="card-large glow">
-            <div class="tag-group">
-              <span class="tag">Vision</span>
-              <span class="tag">Web3</span>
-              <span class="tag">Social</span>
-            </div>
-            <h3>DATANET</h3>
-            <p>La nostra visione dell'Internet 2.0: chat globale decentralizzata, intrattenimento immersivo, contenuti multimediali avanzati.</p>
-            <a href="pages/datanet.html" class="link-arrow">Approfondisci</a>
+          <div class="value-card">
+            <div class="value-icon">🌐</div>
+            <h3>Comunità</h3>
+            <p>Sosteniamo la cultura open source: tutti i nostri progetti sono liberamente accessibili. Organizziamo workshop e hackathon per costruire un ecosistema di AI condivisa.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section section-alt">
+    <section class="team-section">
       <div class="section-inner">
-        <div class="section-header">
-          <span class="section-label" style="background: rgba(0, 255, 136, 0.1); border-color: rgba(0, 255, 136, 0.2); color: var(--accent-green);">Open Source</span>
-          <h2 class="section-title">Progetti della Community</h2>
-          <p class="section-subtitle">Strumenti e risorse liberamente disponibili per innovatori e sviluppatori</p>
-        </div>
+        <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; text-align: center; margin-bottom: 1rem;">Il Nostro Team</h2>
+        <p style="color: var(--text-secondary); text-align: center; max-width: 600px; margin: 0 auto 2rem;">Professionisti con competenze diverse unite dalla passione per l'AI</p>
         
-        <div class="cards-grid">
-          <div class="card-large glow">
-            <div class="tag-group">
-              <span class="tag">GitHub</span>
-              <span class="tag">Tokenizer</span>
-              <span class="tag">AGI-Ready</span>
-            </div>
-            <h3>ELNS Tokenizer</h3>
-            <p>Una soluzione open source per l'elaborazione del linguaggio naturale semplice ma potente, pensata per applicazioni di Artificial General Intelligence.</p>
-            <a href="https://github.com/M-INC-01/ELNSTokenizer" target="_blank" rel="noopener" class="link-arrow">Esplora su GitHub</a>
+        <div class="team-grid">
+          <div class="team-item">
+            <div class="team-icon">🧠</div>
+            <h4>Machine Learning</h4>
+            <p>NLP & Deep Learning</p>
           </div>
-          
-          <div class="card-large glow">
-            <div class="tag-group">
-              <span class="tag">Hugging Face</span>
-              <span class="tag">Collection</span>
-              <span class="tag">Edge AI</span>
-            </div>
-            <h3>Little DAC Collection</h3>
-            <p>La nostra collezione curata di modelli ultra-efficienza per dispositivi edge. Dal microcontrollore allo smartphone, c'è un DAC per ogni esigenza.</p>
-            <a href="https://huggingface.co/collections/Mattimax/little-dac-collection" target="_blank" rel="noopener" class="link-arrow">Vedi la collezione</a>
+          <div class="team-item">
+            <div class="team-icon">⚡</div>
+            <h4>Edge Computing</h4>
+            <p>Sistemi Embedded</p>
+          </div>
+          <div class="team-item">
+            <div class="team-icon">☁️</div>
+            <h4>Cloud Infrastructure</h4>
+            <p>Architetture ibride</p>
+          </div>
+          <div class="team-item">
+            <div class="team-icon">🤝</div>
+            <h4>Open Source</h4>
+            <p>Community & Research</p>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="contact-section">
+      <div class="section-inner">
+        <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 2rem; margin-bottom: 1rem;">Resta Connesso</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 2rem;">Seguici sui nostri canali ufficiali</p>
+        
+        <div class="social-links-large">
+          <a href="https://huggingface.co/Mattimax" target="_blank" rel="noopener" class="social-link-large">
+            <span class="icon">🤗</span>
+            <span>Hugging Face</span>
+          </a>
+          <a href="https://github.com/M-INC-01" target="_blank" rel="noopener" class="social-link-large">
+            <span class="icon">⚡</span>
+            <span>GitHub</span>
+          </a>
+        </div>
+
+        <p style="color: var(--text-muted); font-size: 0.9rem; max-width: 500px; margin: 2rem auto 0;">
+          Per domande, collaborazioni o contributi open source, contattaci tramite GitHub o via email.
+        </p>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <h2>M.INC.</h2>
-        <p>Pionieri nell'intelligenza artificiale edge-first per il mercato italiano. Tecnologia locale, mente globale.</p>
-      </div>
-      
-      <div class="footer-links">
-        <h4>Prodotti</h4>
-        <ul>
-          <li><a href="pages/dac.html">Serie DAC</a></li>
-          <li><a href="pages/dac.html">DACMini</a></li>
-          <li><a href="pages/datanet.html">DATANET</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-links">
-        <h4>Risorse</h4>
-        <ul>
-          <li><a href="pages/progetti.html">Progetti</a></li>
-          <li><a href="https://huggingface.co/Mattimax" target="_blank">Hugging Face</a></li>
-          <li><a href="https://github.com/M-INC-01" target="_blank">GitHub</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-links">
-        <h4>Azienda</h4>
-        <ul>
-          <li><a href="pages/chi-siamo.html">Chi siamo</a></li>
-          <li><a href="pages/privacy.html">Privacy</a></li>
-          <li><a href="pages/privacy.html">Termini</a></li>
-        </ul>
-      </div>
-    </div>
-    
-    <div class="footer-bottom">
-      <p>&copy; <span id="year"></span> M.INC. — Marzorati Incorporation. Tutti i diritti riservati.</p>
-      <div class="social-links">
-        <a href="https://huggingface.co/Mattimax" target="_blank" rel="noopener" aria-label="Hugging Face">🤗</a>
-        <a href="https://github.com/M-INC-01" target="_blank" rel="noopener" aria-label="GitHub">⚡</a>
-      </div>
-    </div>
+    <p>&copy; <span id="year"></span> M.INC. — Marzorati Incorporation</p>
   </footer>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Anno nel footer
-      const y = document.getElementById('year');
-      if(y) y.textContent = new Date().getFullYear();
+      // Anno
+      document.getElementById('year').textContent = new Date().getFullYear();
 
-      // Header scroll effect
+      // Header scroll
       const header = document.getElementById('header');
-      let lastScroll = 0;
-      
       window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-        
-        if (currentScroll > 50) {
-          header.classList.add('scrolled');
-        } else {
-          header.classList.remove('scrolled');
-        }
-        
-        lastScroll = currentScroll;
+        if (window.pageYOffset > 50) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
       }, { passive: true });
 
       // Menu mobile
@@ -1328,207 +636,42 @@
       const nav = document.getElementById('mainNav');
       let isMenuOpen = false;
 
-      menuToggle && menuToggle.addEventListener('click', (e) => {
+      menuToggle?.addEventListener('click', (e) => {
         e.stopPropagation();
-        if(!nav) return;
-        
         isMenuOpen = !isMenuOpen;
-        
         if (isMenuOpen) {
           nav.classList.remove('closing');
           nav.classList.add('active');
-          menuToggle.style.transform = 'rotate(90deg)';
           menuToggle.textContent = '✕';
         } else {
           nav.classList.remove('active');
           nav.classList.add('closing');
-          menuToggle.style.transform = 'rotate(0deg)';
           menuToggle.textContent = '☰';
-          
-          setTimeout(() => {
-            nav.classList.remove('closing');
-          }, 300);
+          setTimeout(() => nav.classList.remove('closing'), 300);
         }
       });
 
-      // Chiudi menu al click fuori
       document.addEventListener('click', (e) => {
         if(isMenuOpen && nav && !nav.contains(e.target) && !menuToggle.contains(e.target)) {
           nav.classList.remove('active');
           nav.classList.add('closing');
-          menuToggle.style.transform = 'rotate(0deg)';
           menuToggle.textContent = '☰';
           isMenuOpen = false;
-          
-          setTimeout(() => {
-            nav.classList.remove('closing');
-          }, 300);
+          setTimeout(() => nav.classList.remove('closing'), 300);
         }
       });
 
-      // Smooth scroll per link interni
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-          const href = this.getAttribute('href');
-          if(href && href.startsWith('#')) {
-            const target = document.querySelector(href);
-            if(target) {
-              e.preventDefault();
-              target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-              });
-              // Chiudi menu mobile se aperto
-              if(isMenuOpen && window.innerWidth <= 768) {
-                nav.classList.remove('active');
-                nav.classList.add('closing');
-                menuToggle.style.transform = 'rotate(0deg)';
-                menuToggle.textContent = '☰';
-                isMenuOpen = false;
-                
-                setTimeout(() => {
-                  nav.classList.remove('closing');
-                }, 300);
-              }
-            }
-          }
-        });
-      });
-
-      // Reveal on scroll con delay progressivo
-      const observerOptions = {
-        threshold: 0.15,
-        rootMargin: '0px 0px -50px 0px'
-      };
-
+      // Reveal animations
       const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
+        entries.forEach(entry => {
           if(entry.isIntersecting) {
-            // Aggiungi delay progressivo basato sulla posizione
-            const delay = Array.from(entry.target.parentNode.children).indexOf(entry.target) * 150;
-            
-            setTimeout(() => {
-              entry.target.classList.add('in-view');
-              entry.target.style.animation = `fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards`;
-            }, delay);
-            
-            // Unobserve dopo l'animazione
+            entry.target.classList.add('in-view');
             observer.unobserve(entry.target);
           }
         });
-      }, observerOptions);
+      }, { threshold: 0.15 });
 
-      // Osserva elementi per animazioni
-      const revealElements = document.querySelectorAll('.card-large, .section-header, .stat-item');
-      revealElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        observer.observe(el);
-      });
-
-      // Effetto parallax sullo sfondo
-      const bgCanvas = document.getElementById('bgCanvas');
-      let mouseX = 0, mouseY = 0;
-      let currentX = 0, currentY = 0;
-      
-      document.addEventListener('mousemove', (e) => {
-        mouseX = (e.clientX - window.innerWidth / 2) * 0.02;
-        mouseY = (e.clientY - window.innerHeight / 2) * 0.02;
-      }, { passive: true });
-
-      function animateParallax() {
-        currentX += (mouseX - currentX) * 0.1;
-        currentY += (mouseY - currentY) * 0.1;
-        
-        if (bgCanvas) {
-          bgCanvas.style.transform = `translate(${currentX}px, ${currentY}px)`;
-        }
-        
-        requestAnimationFrame(animateParallax);
-      }
-      animateParallax();
-
-      // Animazione glow per cards al movimento mouse
-      document.querySelectorAll('.glow').forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-          const rect = card.getBoundingClientRect();
-          const x = ((e.clientX - rect.left) / rect.width) * 100;
-          const y = ((e.clientY - rect.top) / rect.height) * 100;
-          
-          card.style.setProperty('--mouse-x', `${x}%`);
-          card.style.setProperty('--mouse-y', `${y}%`);
-        });
-      });
-
-      // Particle system
-      const particlesContainer = document.getElementById('particles');
-      const particleCount = 25;
-
-      for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 15 + 's';
-        particle.style.animationDuration = (10 + Math.random() * 10) + 's';
-        
-        // Colori diversi per particelle
-        const colors = ['#00f0ff', '#bd00ff', '#0066ff'];
-        particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-        particle.style.boxShadow = `0 0 6px ${particle.style.background}`;
-        
-        particlesContainer.appendChild(particle);
-      }
-
-      // Tilt effect per hero cards
-      document.querySelectorAll('.card-featured').forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          
-          const centerX = rect.width / 2;
-          const centerY = rect.height / 2;
-          
-          const rotateX = (y - centerY) / 20;
-          const rotateY = (centerX - x) / 20;
-          
-          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
-        });
-        
-        card.addEventListener('mouseleave', () => {
-          card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
-        });
-      });
-
-      // Counter animation per stats
-      const statsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const statValues = entry.target.querySelectorAll('.stat-value');
-            statValues.forEach(stat => {
-              const finalValue = stat.textContent;
-              const isPercentage = finalValue.includes('%');
-              const numericValue = parseInt(finalValue);
-              
-              let current = 0;
-              const increment = numericValue / 50;
-              const timer = setInterval(() => {
-                current += increment;
-                if (current >= numericValue) {
-                  stat.textContent = finalValue;
-                  clearInterval(timer);
-                } else {
-                  stat.textContent = Math.floor(current) + (isPercentage ? '%' : '');
-                }
-              }, 30);
-            });
-            statsObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.5 });
-
-      const statsBar = document.querySelector('.stats-bar');
-      if (statsBar) statsObserver.observe(statsBar);
+      document.querySelectorAll('.mission-card, .value-card, .team-item').forEach(el => observer.observe(el));
     });
   </script>
 </body>
