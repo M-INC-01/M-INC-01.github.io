@@ -4,70 +4,523 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy & Termini – M.INC.</title>
-  <meta name="description" content="Privacy, cookie policy e termini di servizio di M.INC. per l’utilizzo del sito e i servizi offerti." />
-  <link rel="stylesheet" href="../styles.css" />
+  <meta name="description" content="Privacy, cookie policy e termini di servizio di M.INC. per l'utilizzo del sito e i servizi offerti." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #020408;
+      --bg-secondary: #0a0f1a;
+      --bg-card: rgba(15, 23, 36, 0.7);
+      --text-primary: #ffffff;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --accent-cyan: #00f0ff;
+      --accent-purple: #bd00ff;
+      --accent-blue: #0066ff;
+      --accent-green: #00ff88;
+      --gradient-primary: linear-gradient(135deg, #00f0ff 0%, #0066ff 50%, #bd00ff 100%);
+      --gradient-secondary: linear-gradient(90deg, #00f0ff, #bd00ff);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      background: 
+        radial-gradient(ellipse at 20% 80%, rgba(100, 100, 100, 0.1) 0%, transparent 50%),
+        var(--bg-primary);
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1.25rem 4vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(20px);
+      background: rgba(2, 4, 8, 0.8);
+      border-bottom: 1px solid var(--glass-border);
+      transition: all 0.4s var(--ease-out-expo);
+    }
+
+    .site-header.scrolled {
+      padding: 0.75rem 4vw;
+      background: rgba(2, 4, 8, 0.95);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .brand { display: flex; flex-direction: column; gap: 0.25rem; }
+    
+    .brand h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: titleGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes titleGlow {
+      from { filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.3)); }
+      to { filter: drop-shadow(0 0 20px rgba(189, 0, 255, 0.5)); }
+    }
+
+    .brand .tag {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-weight: 500;
+    }
+
+    .nav {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .nav a {
+      position: relative;
+      padding: 0.6rem 1.2rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border-radius: 100px;
+      transition: all 0.3s var(--ease-out-expo);
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .nav a::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gradient-primary);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: inherit;
+    }
+
+    .nav a:hover, .nav a.active { color: var(--text-primary); transform: translateY(-2px); }
+    .nav a:hover::before, .nav a.active::before { opacity: 0.15; }
+    
+    .nav a.active::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20%;
+      height: 2px;
+      background: var(--gradient-secondary);
+      border-radius: 2px;
+      box-shadow: 0 0 10px var(--accent-cyan);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--glass-border);
+      color: var(--text-primary);
+      padding: 0.6rem;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1.25rem;
+      transition: all 0.3s var(--ease-elastic);
+      z-index: 1002;
+    }
+
+    .menu-toggle:hover {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+      transform: scale(1.05);
+    }
+
+    main { margin-top: 80px; }
+
+    .page-header {
+      padding: 6rem 6vw 3rem;
+      text-align: center;
+      border-bottom: 1px solid var(--glass-border);
+      background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.02) 100%);
+    }
+
+    .page-header h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-header h1 span {
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .last-updated {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 1rem;
+    }
+
+    .section { padding: 4rem 6vw; position: relative; }
+    .section-inner { max-width: 800px; margin: 0 auto; }
+
+    .policy-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 3rem;
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.5s var(--ease-out-expo);
+    }
+
+    .policy-card.in-view {
+      animation: fadeInUp 0.8s var(--ease-out-expo) forwards;
+    }
+
+    .policy-card:hover {
+      border-color: rgba(0, 240, 255, 0.2);
+    }
+
+    .policy-card h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .policy-card h2 .icon {
+      width: 50px;
+      height: 50px;
+      background: var(--gradient-primary);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .policy-card p {
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .policy-card ul {
+      list-style: none;
+      margin: 1.5rem 0;
+    }
+
+    .policy-card li {
+      color: var(--text-secondary);
+      padding: 0.8rem 0;
+      padding-left: 2rem;
+      position: relative;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .policy-card li:last-child {
+      border-bottom: none;
+    }
+
+    .policy-card li::before {
+      content: '•';
+      position: absolute;
+      left: 0.5rem;
+      color: var(--accent-cyan);
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .policy-card strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .highlight-box {
+      background: rgba(0, 240, 255, 0.05);
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .highlight-box p {
+      margin: 0;
+      color: var(--text-primary);
+    }
+
+    .cookie-types {
+      display: grid;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .cookie-type {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    .cookie-type h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .cookie-type p {
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    .contact-section {
+      text-align: center;
+      padding: 4rem 6vw;
+      background: linear-gradient(180deg, transparent 0%, rgba(0, 240, 255, 0.05) 100%);
+    }
+
+    .contact-section h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .contact-section p {
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: 100px;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s var(--ease-out-expo);
+    }
+
+    .contact-link:hover {
+      border-color: var(--accent-cyan);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .site-footer {
+      padding: 3rem 6vw;
+      border-top: 1px solid var(--glass-border);
+      background: var(--bg-secondary);
+      text-align: center;
+    }
+
+    .site-footer p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-10px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes slideOut {
+      from { opacity: 1; transform: translateY(0) scale(1); }
+      to { opacity: 0; transform: translateY(-10px) scale(0.95); }
+    }
+
+    @media (max-width: 768px) {
+      .nav {
+        display: none;
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        background: rgba(2, 4, 8, 0.98);
+        backdrop-filter: blur(20px);
+        padding: 1.5rem;
+        border-radius: 16px;
+        border: 1px solid var(--glass-border);
+        flex-direction: column;
+        gap: 0.5rem;
+        min-width: 200px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        z-index: 1001;
+      }
+
+      .nav.active { display: flex; animation: slideIn 0.3s var(--ease-out-expo); }
+      .nav.closing { animation: slideOut 0.3s var(--ease-out-expo) forwards; }
+      .nav a { padding: 0.8rem 1.2rem; width: 100%; text-align: center; }
+      .menu-toggle { display: block; }
+      .page-header { padding: 5rem 4vw 2rem; }
+      .policy-card { padding: 2rem; }
+      .policy-card h2 { font-size: 1.4rem; flex-direction: column; text-align: center; gap: 0.5rem; }
+      .cookie-types { grid-template-columns: 1fr; }
+      .contact-links { flex-direction: column; align-items: center; }
+      .contact-link { width: 100%; max-width: 300px; justify-content: center; }
+    }
+
+    ::selection { background: rgba(0, 240, 255, 0.3); color: white; }
+  </style>
 </head>
 <body>
-  <header class="site-header">
+  <div class="bg-canvas"></div>
+
+  <header class="site-header" id="header">
     <div class="brand">
       <h1>M.INC.</h1>
-      <p class="tag">Marzorati Incorporation — LLM & Edge Computing</p>
+      <p class="tag">Marzorati Incorporation</p>
     </div>
-    <nav class="nav">
+    <nav class="nav" id="mainNav">
       <a href="../index.html">Home</a>
       <a href="dac.html">DAC</a>
       <a href="datanet.html">DATANET</a>
       <a href="progetti.html">Progetti</a>
       <a href="chi-siamo.html">Chi siamo</a>
-      <a href="privacy.html" class="active">Privacy / Termini</a>
+      <a href="privacy.html" class="active">Privacy</a>
     </nav>
-    <button id="menuToggle" class="menu-toggle" aria-label="Apri menu">☰</button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Apri menu">☰</button>
   </header>
 
-  <main class="section">
-    <div class="section-inner">
-      <h1>Privacy, Cookie Policy e Termini di Servizio</h1>
+  <main>
+    <section class="page-header">
+      <h1>Privacy & <span>Termini</span></h1>
+      <p class="last-updated">Ultimo aggiornamento: Gennaio 2025</p>
+    </section>
 
-      <section class="section">
-        <h2 class="section-title">Informativa sulla Privacy</h2>
-        <p>In M.INC., la tua privacy è una priorità. Raccogliamo solo i dati strettamente necessari per il funzionamento del sito e per migliorare i nostri servizi. Non vendiamo dati a terzi e utilizziamo misure di sicurezza per proteggerli.</p>
-        <p>I dati che possono essere raccolti includono:</p>
-        <ul>
-          <li>Dati tecnici (IP, tipo di browser, dati di navigazione)</li>
-          <li>Informazioni di contatto, se fornite volontariamente</li>
-        </ul>
-        <p>Usiamo questi dati per:</p>
-        <ul>
-          <li>Gestire il sito e migliorare l’esperienza utente</li>
-          <li>Analisi statistiche</li>
-          <li>Comunicazioni rilevanti (es. aggiornamenti su modelli, progetti)</li>
-        </ul>
-      </section>
+    <section class="section">
+      <div class="section-inner">
+        <div class="policy-card">
+          <h2><span class="icon">🔒</span> Informativa sulla Privacy</h2>
+          <p>In M.INC., la tua privacy è una priorità assoluta. Raccogliamo solo i dati strettamente necessari per il funzionamento del sito e per migliorare i nostri servizi.</p>
+          
+          <div class="highlight-box">
+            <p><strong>Non vendiamo dati a terzi.</strong> Utilizziamo misure di sicurezza avanzate per proteggere le tue informazioni.</p>
+          </div>
 
-      <section class="section alt">
-        <h2 class="section-title">Cookie Policy</h2>
-        <p>Il nostro sito utilizza cookie per migliorare la navigazione, analizzare l’uso del sito e personalizzare i contenuti.</p>
-        <p>Tipologie di cookie utilizzati:</p>
-        <ul>
-          <li><strong>Cookie essenziali:</strong> necessari per il funzionamento del sito.</li>
-          <li><strong>Cookie analitici:</strong> per raccogliere dati aggregati su traffico e utilizzo.</li>
-          <li><strong>Cookie di terze parti:</strong> possono essere usati da Google AdSense per la pubblicità personalizzata.</li>
-        </ul>
-        <p>Puoi controllare o disabilitare i cookie tramite le impostazioni del browser. Nota che disabilitando alcuni cookie, alcune funzionalità del sito potrebbero non funzionare correttamente.</p>
-      </section>
+          <p><strong>Dati raccolti:</strong></p>
+          <ul>
+            <li>Dati tecnici (IP, tipo di browser, dati di navigazione)</li>
+            <li>Informazioni di contatto, se fornite volontariamente</li>
+            <li>Preferenze di utilizzo e analytics anonimizzati</li>
+          </ul>
 
-      <section class="section">
-        <h2 class="section-title">Termini di Servizio</h2>
-        <p>Benvenuto su M.INC. (“noi”, “ci”, “nostro”). Usando il sito web <em>m-inc.io</em> (o il dominio che stai usando), accetti i seguenti termini:</p>
-        <ul>
-          <li>Il contenuto del sito è di proprietà di M.INC. o dei suoi contributori.</li>
-          <li>Puoi usare i nostri progetti open source (modelli, dataset, documentazione) secondo le relative licenze.</li>
-          <li>Non ci assumiamo responsabilità per errori nei modelli, nei dati o nei risultati di inferenza.</li>
-          <li>Ci riserviamo il diritto di modificare i contenuti del sito, i termini o la policy in qualsiasi momento. Ti consigliamo di rivedere periodicamente questa pagina.</li>
-        </ul>
-        <p>Se hai domande sui termini, sulla privacy o sui cookie, contattaci tramite il nostro GitHub o via email.</p>
-      </section>
-    </div>
+          <p><strong>Utilizzo dei dati:</strong></p>
+          <ul>
+            <li>Gestione del sito e miglioramento dell'esperienza utente</li>
+            <li>Analisi statistiche aggregate</li>
+            <li>Comunicazioni rilevanti (aggiornamenti su modelli e progetti)</li>
+          </ul>
+        </div>
+
+        <div class="policy-card">
+          <h2><span class="icon" style="background: linear-gradient(135deg, #f59e0b, #ef4444);">🍪</span> Cookie Policy</h2>
+          <p>Il nostro sito utilizza cookie per migliorare la navigazione, analizzare l'uso del sito e personalizzare i contenuti.</p>
+
+          <div class="cookie-types">
+            <div class="cookie-type">
+              <h4>Cookie Essenziali</h4>
+              <p>Necessari per il funzionamento base del sito. Non possono essere disabilitati.</p>
+            </div>
+            <div class="cookie-type">
+              <h4>Cookie Analitici</h4>
+              <p>Ci aiutano a capire come gli utenti interagiscono con il sito. Dati anonimizzati.</p>
+            </div>
+            <div class="cookie-type">
+              <h4>Cookie di Terze Parti</h4>
+              <p>Utilizzati da Google AdSense per pubblicità personalizzata (se attiva).</p>
+            </div>
+          </div>
+
+          <p>Puoi controllare o disabilitare i cookie tramite le impostazioni del tuo browser. Nota che alcune funzionalità potrebbero non funzionare correttamente senza cookie essenziali.</p>
+        </div>
+
+        <div class="policy-card">
+          <h2><span class="icon" style="background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan));">📋</span> Termini di Servizio</h2>
+          <p>Benvenuto su M.INC. ("noi", "ci", "nostro"). Utilizzando il sito web <strong>m-inc.io</strong>, accetti i seguenti termini e condizioni:</p>
+
+          <ul>
+            <li>Il contenuto del sito è di proprietà di M.INC. o dei suoi contributori, protetto da copyright.</li>
+            <li>I nostri progetti open source (modelli, dataset, documentazione) sono utilizzabili secondo le rispettive licenze.</li>
+            <li>Non ci assumiamo responsabilità per errori nei modelli, nei dati o nei risultati di inferenza generati.</li>
+            <li>Ci riserviamo il diritto di modificare contenuti, termini o policy in qualsiasi momento.</li>
+            <li>L'uso dei nostri servizi è a tuo rischio. Forniamo tutto "così com'è" senza garanzie esplicite o implicite.</li>
+          </ul>
+
+          <div class="highlight-box" style="background: rgba(0, 255, 136, 0.05); border-color: rgba(0, 255, 136, 0.2);">
+            <p><strong>Consigliamo di rivedere periodicamente questa pagina</strong> per eventuali aggiornamenti.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section">
+      <h2>Hai Domande?</h2>
+      <p>Per qualsiasi chiarimento su privacy, cookie o termini di servizio</p>
+      <div class="contact-links">
+        <a href="https://github.com/M-INC-01" target="_blank" rel="noopener" class="contact-link">
+          <span>💬</span> Contattaci su GitHub
+        </a>
+        <a href="mailto:privacy@m-inc.io" class="contact-link">
+          <span>✉️</span> Email Privacy Team
+        </a>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -75,7 +528,55 @@
   </footer>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      const header = document.getElementById('header');
+      window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 50) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+      }, { passive: true });
+
+      const menuToggle = document.getElementById('menuToggle');
+      const nav = document.getElementById('mainNav');
+      let isMenuOpen = false;
+
+      menuToggle?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        isMenuOpen = !isMenuOpen;
+        if (isMenuOpen) {
+          nav.classList.remove('closing');
+          nav.classList.add('active');
+          menuToggle.textContent = '✕';
+        } else {
+          nav.classList.remove('active');
+          nav.classList.add('closing');
+          menuToggle.textContent = '☰';
+          setTimeout(() => nav.classList.remove('closing'), 300);
+        }
+      });
+
+      document.addEventListener('click', (e) => {
+        if(isMenuOpen && nav && !nav.contains(e.target) && !menuToggle.contains(e.target)) {
+          nav.classList.remove('active');
+          nav.classList.add('closing');
+          menuToggle.textContent = '☰';
+          isMenuOpen = false;
+          setTimeout(() => nav.classList.remove('closing'), 300);
+        }
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      document.querySelectorAll('.policy-card').forEach(el => observer.observe(el));
+    });
   </script>
 </body>
 </html>
